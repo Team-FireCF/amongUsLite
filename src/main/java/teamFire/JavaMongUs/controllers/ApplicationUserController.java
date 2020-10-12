@@ -26,7 +26,7 @@ public class ApplicationUserController {
 
         applicationUserRepository.save(newUser);
 
-        return new RedirectView("/");
+        return new RedirectView("/game");
     }
 
 }
