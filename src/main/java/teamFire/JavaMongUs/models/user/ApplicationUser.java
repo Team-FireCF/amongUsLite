@@ -20,22 +20,6 @@ public class ApplicationUser implements UserDetails {
 
     String username;
     String password;
-    boolean deadOrAlive;
-    boolean imposter;
-
-    @ManyToMany(cascade = CascadeType.REMOVE)
-
-    @JoinTable(
-            name = "sharedLocations",
-            joinColumns = {@JoinColumn(name = "locations")},
-            inverseJoinColumns = {@JoinColumn(name = "players")}
-    )
-
-    public Set<ApplicationUser> playerLocations = new HashSet<>();
-
-    @ManyToMany(mappedBy = "playerLocations")
-
-    public Set<Location> locationOfPlayers = new HashSet<>(); //will create Location class later
 
 
 
