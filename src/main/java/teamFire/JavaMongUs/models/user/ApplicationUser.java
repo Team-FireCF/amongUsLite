@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -20,6 +22,21 @@ public class ApplicationUser implements UserDetails {
     String password;
     boolean deadOrAlive;
     boolean imposter;
+
+    @ManyToMany(cascade = CascadeType.REMOVE)
+
+    @JoinTable(
+            name = "sharedLocations",
+            joinColumns = {@JoinColumn(name = "locations")},
+            inverseJoinColumns = {@JoinColumn(name = "players")}
+    )
+
+    public Set<ApplicationUser> playerLocations = new HashSet<>();
+
+    @ManyToMany(mappedBy = "playerLocations")
+
+    public Set<Location> locationOfPlayers = new HashSet<>(); //will create Location class later
+
 
 
 
