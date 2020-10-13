@@ -6,11 +6,13 @@ import teamFire.JavaMongUs.models.user.ApplicationUser;
 import teamFire.JavaMongUs.models.user.Player;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class GameState {
-    ArrayList<Player> playerList = new ArrayList<>();
-    ArrayList<Location> currentLocation = new ArrayList<>();
-    Boolean discuss= false;
+    public HashMap<String, Player> playerList = new HashMap<>();
+    public HashMap<String, Location> currentLocation = new HashMap<>();
+    public Boolean discuss= false;
 
 
 }
