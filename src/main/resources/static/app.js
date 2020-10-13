@@ -14,14 +14,14 @@ function setConnected(connected) {
 }
 
 function connect(){
-console.log("Testing");
+
   var socket =  new SockJS('/javaMongUs');
   stompClient = Stomp.over(socket);
   stompClient.connect({}, function(frame){
     // setConnected(true); TODO:Write setConnected function if needed
     console.log("connected " + frame);
     stompClient.subscribe('/game/messages', function(message){
-      showMessage(JSON.parse(message.body).content);
+    showMessage(JSON.parse(message.body).content);
     });//TODO:Stretch: Make messages dynamic
 
   })
@@ -36,7 +36,11 @@ function disconnect(){
 }
 
 function sendMessage(){
-  stompClient.send("/app/userTexts", {}, JSON.stringify({'message':$("#text")}))
+  stompClient.send("/app/userTexts", {}, JSON.stringify({'message':$("#text").val()}))
+}
+
+function showMessage(message) {
+    $("#messages").append("<tr><td>" + message + "</td></tr>");
 }
 
 $(function () {
@@ -45,5 +49,7 @@ $(function () {
   });
   $( "#connect" ).click(function() { connect(); });
   $( "#disconnect" ).click(function() { disconnect(); });
-  $( "#send" ).click(function() { sendName(); });
+  $( "#send" ).click(function() { sendMessage(); });
 });
+
+
