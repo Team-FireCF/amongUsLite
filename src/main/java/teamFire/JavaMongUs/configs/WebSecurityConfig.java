@@ -8,8 +8,14 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
+import java.security.Principal;
 
 @Configuration
 @EnableWebSecurity
@@ -35,14 +41,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors().disable()
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/stomp").permitAll()
                 .antMatchers("/").permitAll()
-                .antMatchers("/newuser").permitAll()
+                .antMatchers("/newuser", "/login").permitAll()
                 .antMatchers("/static/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/")
-                .defaultSuccessUrl("/")
+                .loginPage("/login")
+                .defaultSuccessUrl("/game")
                 .and()
                 .logout();
     }
