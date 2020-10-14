@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 import teamFire.JavaMongUs.models.GameState;
+import teamFire.JavaMongUs.models.location.Location;
 import teamFire.JavaMongUs.models.user.Player;
 
 import java.security.Principal;
@@ -37,15 +38,19 @@ public class GameStateController {
     @PostMapping("/gameUpdate")
     public RedirectView updateGameState(Principal principal, String location) throws InterruptedException {
         playerUpdateCounter++;
+        // Steps
+        // Remove principal player from the current location arraylist
+        // add principal player to new current location array list
+        // update principal player "player" location.
+        Player getPlayer = CreateGameController.startGame.playerList.get(principal.getName());
+        getPlayer.getPlayerLocation().playersAtCurrentLocation.remove(getPlayer);
 
-//        System.out.println(CreateGameController.startGame.playerList.get(principal.getName()).getPlayerLocation().toString());
-        CreateGameController.startGame.currentLocation.get(CreateGameController.startGame.playerList.get(principal.getName()).getPlayerLocation()).playersAtCurrentLocation.remove(CreateGameController.startGame.playerList.get(principal.getName()));
-        CreateGameController.startGame.playerList.get(principal.getName()).playerLocation = CreateGameController.startGame.currentLocation.get(location);
-        CreateGameController.startGame.currentLocation.get(location).playersAtCurrentLocation.add(CreateGameController.startGame.playerList.get(principal.getName()));
+        Location getLocation = CreateGameController.startGame.currentLocation.get(location);
+        getLocation.playersAtCurrentLocation.add(getPlayer);
 
-        System.out.println(CreateGameController.startGame.playerList.get(principal.getName()).playerLocation);
-        System.out.println(CreateGameController.startGame.currentLocation.get("Conference Room").playersAtCurrentLocation.toString());
-        System.out.println(CreateGameController.startGame.currentLocation.get(location).playersAtCurrentLocation.toString());
+        getPlayer.setPlayerLocation(getLocation);
+        
+
         while(playerUpdateCounter < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
 
         return new RedirectView("/game");
