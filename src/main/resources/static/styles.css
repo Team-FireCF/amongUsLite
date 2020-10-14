@@ -1,0 +1,53 @@
+#gameBoard {
+    width: 1600px;
+    height: 900px;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 25px;
+}
+
+#chat {
+    width: 285px;
+    height: 570px;
+    background-color: darkseagreen;
+    border-radius: 25px;
+    margin: 15px;
+}
+
+#actionPlace {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1240px;
+    height: 870px;
+    background-color: chartreuse;
+    border-radius: 25px;
+    margin: 15px;
+}
+
+#infoMessage {
+    width: 300px;
+    height: 900px;
+    border-radius:25px;
+}
+
+#deadAlive {
+    width: 270px;
+    height: 270px;
+    border-radius: 25px;
+    margin: 15px;
+}
+
+#aroundMe {
+    width: 1240px;
+    height: 100px;
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+    background-color: lightslategrey;
+}
+
+#map {
+    width: 520px;
+    height: 370px;
+    margin: 15px;
+}
