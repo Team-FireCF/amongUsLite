@@ -26,10 +26,26 @@
                 </div>
                 <div id="map">
                     <img src="/JavaMongUs_map.png" alt="">
-                </div>
-<!--                    <div id="timer" style="'font-size: 15px; font-weight: bolder; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;'"></div>-->
+                </div>           
                 <div th:if="${principal}" th:replace="fragments/timer.html :: #timer"></div>
-
+                <div id="placesToGo">
+                    <h3>Places You Can Go</h3>
+                    <section>
+                        <form>
+                            <span action="/update" method="POST" th:each="location : ${playerOne.playerLocation.adjacentLocations}">
+                                <input type="radio"  th:id="${location.getName()}" name="location" th:value="${location.getName()}">
+                                <label th:for="${location.getName()}" th:text ="${location.getName()}"></label><br>
+                            </span>
+                        </form>
+                    </section>
+                </div>
+            </div>
+            <div id="infoMessage">
+                <div id="deadAlive">
+                    <img src="https://via.placeholder.com/270x270.png?text=Dead + Alive" alt="">
+                </div>
+                <div id="chat">
+                    <div th:if="${principal != null}" th:replace="fragments/message :: body"></div>
                 </div>
             </div>
 
