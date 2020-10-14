@@ -19,6 +19,10 @@
     </div>
 </header>
 <body>
+    <div th:replace="fragments/logout :: a"></div>
+    <div th:replace="fragments/homeButton :: a"></div>
+    <div th:replace="fragments/report :: a"></div>
+
     <div id="gameBoard">
             <div id="actionPlace">
                 <div id="aroundMe">
@@ -26,7 +30,7 @@
                 </div>
                 <div id="map">
                     <img src="/JavaMongUs_map.png" alt="">
-                </div>           
+                </div>
                 <div th:if="${principal}" th:replace="fragments/timer.html :: #timer"></div>
                 <div id="placesToGo">
                     <h3>Places You Can Go</h3>
@@ -45,6 +49,7 @@
                     <div th:replace="fragments/kill :: div"></div>
                 </div>
             </div>
+
 
 
 
