@@ -51,3 +51,35 @@
     height: 370px;
     margin: 15px;
 }
+
+#map img {
+    max-width: 520px;
+    max-height: 370px;
+    margin: 15px;
+    border-radius: 25px;
+}
+
+#meetingBoard {
+    width: 1600px;
+    height: 900px;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 25px;
+}
+
+#meetingMap {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1240px;
+    height: 870px;
+    background-color: chartreuse;
+    border-radius: 25px;
+    margin: 15px;
+}
+
+#meetingMap img {
+    width: 870px;
+    height: 834px;
+    padding: 25px;
+    border-radius: 25px;
+}

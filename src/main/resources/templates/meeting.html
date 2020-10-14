@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<header>
+    <div id="headerGame">
+        <img src="https://via.placeholder.com/1600x200" alt="">
+
+    </div>
+</header>
+<body>
+    <div id="meetingBoard">
+        <div id="meetingMap">
+            <img src="/JavaMongUs_map.png" alt="">
+        </div>
+        <div id="infoMessage">
+            <div id="deadAlive">
+                <img src="https://via.placeholder.com/270x270.png?text=Dead + Alive" alt="">
+            </div>
+            <div id="chat">
+                <div th:if="${principal != null}" th:replace="fragments/message :: body"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

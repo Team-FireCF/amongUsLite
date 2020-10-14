@@ -18,4 +18,20 @@ public class GameStateController {
         m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values());
         return "game";
     }
+
+    @GetMapping("/startGame")
+    public String startGame(Principal principal, Model m) {
+        m.addAttribute("playerOne", CreateGameController.startGame.playerList.get(principal.getName()) );
+        m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values() );
+        return "game";
+    }
+
+    @GetMapping("/meeting")
+    public String showMeeting(Principal principal, Model m) {
+        m.addAttribute("playerOne", CreateGameController.startGame.playerList.get(principal.getName()) );
+        m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values() );
+        return "meeting";
+    }
+
+
 }

@@ -18,7 +18,7 @@ function connect(){
   var socket =  new SockJS('/javaMongUs');
   stompClient = Stomp.over(socket);
   stompClient.connect({}, function(frame){
-    // setConnected(true); TODO:Write setConnected function if needed
+     setConnected(true);
     console.log("connected " + frame);
     stompClient.subscribe('/game/messages', function(message){
     showMessage(JSON.parse(message.body).content);
