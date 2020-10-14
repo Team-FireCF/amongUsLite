@@ -1,6 +1,7 @@
 package teamFire.JavaMongUs.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.servlet.view.RedirectView;
@@ -17,14 +18,14 @@ import java.util.Map;
 public class CreateGameController {
     public static GameState startGame = new GameState();
 
-    @PostMapping("/create")
-    public void createGame(Principal principal){
+    @GetMapping("/create")
+    public RedirectView createGame(Principal principal){
         Location conferenceRoom = new Location("Conference Room");
         startGame.currentLocation.put("conferenceRoom", conferenceRoom);
         Location lounge = new Location("Lounge");
         startGame.currentLocation.put("lounge",lounge);
         Location oxygen = new Location("Oxygen Room");
-        startGame.currentLocation.put("oxyger",oxygen);
+        startGame.currentLocation.put("oxygen",oxygen);
         Location electrical = new Location("Electrical Room");
         startGame.currentLocation.put("electrical",electrical);
         Location zoom = new Location("Zoom Room");
@@ -184,13 +185,17 @@ public class CreateGameController {
         hall25.adjacentLocations.add(study);
         hall25.adjacentLocations.add(hall3);
         hall25.adjacentLocations.add(hall4);
+        System.out.println(startGame.toString());
+
+        return new RedirectView("/");
     }
 
-    @PostMapping("/playerJoin")
+    @GetMapping("/playerJoin")
     public RedirectView playerJoinGame(Principal principal){
         Player newPlayer = new Player(principal.getName(), startGame.currentLocation.get("conferenceRoom"));
         startGame.currentLocation.get("conferenceRoom").playersAtCurrentLocation.add(newPlayer);
         startGame.playerList.put(principal.getName(), newPlayer);
+        System.out.println(startGame.playerList.get(principal.getName()).getPlayerLocation().locationName);
 
 
         return new RedirectView("/game");
