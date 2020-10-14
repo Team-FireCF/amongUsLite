@@ -19,6 +19,10 @@
     </div>
 </header>
 <body>
+    <div th:replace="fragments/logout :: a"></div>
+    <div th:replace="fragments/homeButton :: a"></div>
+    <div th:replace="fragments/report :: a"></div>
+
     <div id="gameBoard">
             <div id="actionPlace">
                 <div id="aroundMe">
@@ -26,7 +30,7 @@
                 </div>
                 <div id="map">
                     <img src="/JavaMongUs_map.png" alt="">
-                </div>           
+                </div>
                 <div th:if="${principal}" th:replace="fragments/timer.html :: #timer"></div>
                 <div id="placesToGo">
                     <h3>Places You Can Go</h3>
@@ -40,16 +44,7 @@
                     </section>
                 </div>
             </div>
-            <div id="infoMessage">
-<!--   ==== Dead or Alive Starts Below =====-->
-                <div id="deadAlive">
-                    <div th:replace="fragments/deadAlive :: ul"></div>
-                </div>
-<!--   ==== Dead or Alive Contents Above =====-->
-                <div id="chat">
-                    <div th:if="${principal != null}" th:replace="fragments/message :: body"></div>
-                </div>
-            </div>
+
 
 
     <a href="/meeting">Call Meeting</a>

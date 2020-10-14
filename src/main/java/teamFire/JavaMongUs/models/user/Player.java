@@ -8,7 +8,7 @@ import java.util.List;
 public class Player {
 
     public String username;
-    public boolean dead = true;
+    public boolean dead = false;
     public boolean impostor = false;
     public Location playerLocation;
     //ToDo: Add tasks
