@@ -13,7 +13,7 @@ import java.security.Principal;
 public class GameStateController {
 
     @GetMapping("/game")
-    public String showGame(Principal principal, Model m){
+    public String showTheGame(Principal principal, Model m){
         m.addAttribute(CreateGameController.startGame.playerList.get(principal.getName()) );
         return "game";
     }

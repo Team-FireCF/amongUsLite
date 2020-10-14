@@ -14,5 +14,12 @@ public class GameState {
     public HashMap<String, Location> currentLocation = new HashMap<>();
     public Boolean discuss= false;
 
-
+    @Override
+    public String toString() {
+        return "GameState{" +
+                "playerList=" + playerList +
+                ", currentLocation=" + currentLocation +
+                ", discuss=" + discuss +
+                '}';
+    }
 }

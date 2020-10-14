@@ -20,6 +20,9 @@
         <input type="submit">
     </form>
 
-    <section th:if="principal != null"></section>
+    <section th:if="${principal != null}">
+        <a href="/create">Create New Game</a>
+        <a href="/playerJoin">Join Game</a>
+    </section>
 </body>
 </html>
