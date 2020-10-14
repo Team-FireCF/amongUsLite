@@ -17,9 +17,11 @@
             <img src="/JavaMongUs_map.png" alt="">
         </div>
         <div id="infoMessage">
+            <!--   ==== Dead or Alive Starts Below =====-->
             <div id="deadAlive">
-                <img src="https://via.placeholder.com/270x270.png?text=Dead + Alive" alt="">
+                <div th:replace="fragments/deadAlive :: ul"></div>
             </div>
+            <!--   ==== Dead or Alive Contents Above =====-->
             <div id="chat">
                 <div th:if="${principal != null}" th:replace="fragments/message :: body"></div>
             </div>
