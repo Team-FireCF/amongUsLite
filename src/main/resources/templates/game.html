@@ -26,6 +26,17 @@
                 <div id="map">
                     <img src="https://via.placeholder.com/520x370.png?text=This + is + the + map!" alt="">
                 </div>
+                <div id="placesToGo">
+                    <h3>Places You Can Go</h3>
+                    <section>
+                        <form>
+                            <span action="/update" method="POST" th:each="location : ${playerOne.playerLocation.adjacentLocations}">
+                                <input type="radio"  th:id="${location.getName()}" name="location" th:value="${location.getName()}">
+                                <label th:for="${location.getName()}" th:text ="${location.getName()}"></label><br>
+                            </span>
+                        </form>
+                    </section>
+                </div>
             </div>
             <div id="infoMessage">
                 <div id="deadAlive">
