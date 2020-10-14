@@ -21,73 +21,73 @@ public class CreateGameController {
     @GetMapping("/create")
     public RedirectView createGame(Principal principal){
         Location conferenceRoom = new Location("Conference Room");
-        startGame.currentLocation.put("conferenceRoom", conferenceRoom);
+        startGame.currentLocation.put("Conference Room", conferenceRoom);
         Location lounge = new Location("Lounge");
-        startGame.currentLocation.put("lounge",lounge);
+        startGame.currentLocation.put("Lounge",lounge);
         Location oxygen = new Location("Oxygen Room");
-        startGame.currentLocation.put("oxygen",oxygen);
+        startGame.currentLocation.put("Oxygen Room",oxygen);
         Location electrical = new Location("Electrical Room");
-        startGame.currentLocation.put("electrical",electrical);
+        startGame.currentLocation.put("Electrical Room",electrical);
         Location zoom = new Location("Zoom Room");
-        startGame.currentLocation.put("zoom",zoom);
+        startGame.currentLocation.put("Zoom Room",zoom);
         Location remo = new Location("Remo Room");
-        startGame.currentLocation.put("remo",remo);
+        startGame.currentLocation.put("Remo Room",remo);
         Location computer = new Location("Computer Room");
-        startGame.currentLocation.put("computer",computer);
+        startGame.currentLocation.put("Computer Room",computer);
         Location codeFellows = new Location("CodeFellows Room");
-        startGame.currentLocation.put("codeFellows",codeFellows);
+        startGame.currentLocation.put("CodeFellows Room",codeFellows);
         Location study = new Location("Study");
-        startGame.currentLocation.put("study",study);
+        startGame.currentLocation.put("Study",study);
         Location hall1 = new Location("Hall 1");
-        startGame.currentLocation.put("hall1",hall1);
+        startGame.currentLocation.put("Hall 1",hall1);
         Location hall2 = new Location("Hall 2");
-        startGame.currentLocation.put("hall2",hall2);
+        startGame.currentLocation.put("Hall 2",hall2);
         Location hall3 = new Location("Hall 3");
-        startGame.currentLocation.put("hall3",hall3);
+        startGame.currentLocation.put("Hall 3",hall3);
         Location hall4 = new Location("Hall 4");
-        startGame.currentLocation.put("hall4",hall4);
+        startGame.currentLocation.put("Hall 4",hall4);
         Location hall5 = new Location("Hall 5");
-        startGame.currentLocation.put("hall5",hall5);
+        startGame.currentLocation.put("Hall 5",hall5);
         Location hall6 = new Location("Hall 6");
-        startGame.currentLocation.put("hall6",hall6);
+        startGame.currentLocation.put("Hall 6",hall6);
         Location hall7 = new Location("Hall 7");
-        startGame.currentLocation.put("hall7",hall7);
+        startGame.currentLocation.put("Hall 7",hall7);
         Location hall8 = new Location("Hall 8");
-        startGame.currentLocation.put("hall8",hall8);
+        startGame.currentLocation.put("Hall 8",hall8);
         Location hall9 = new Location("Hall 9");
-        startGame.currentLocation.put("hall9",hall9);
+        startGame.currentLocation.put("Hall 9",hall9);
         Location hall10 = new Location("Hall 10");
-        startGame.currentLocation.put("hall10",hall10);
+        startGame.currentLocation.put("Hall 10",hall10);
         Location hall11 = new Location("Hall 11");
-        startGame.currentLocation.put("hall11",hall11);
+        startGame.currentLocation.put("Hall 11",hall11);
         Location hall12 = new Location("Hall 12");
-        startGame.currentLocation.put("hall12",hall12);
+        startGame.currentLocation.put("Hall 12",hall12);
         Location hall13 = new Location("Hall 13");
-        startGame.currentLocation.put("hall13",hall13);
+        startGame.currentLocation.put("Hall 13",hall13);
         Location hall14 = new Location("Hall 14");
-        startGame.currentLocation.put("hall14",hall14);
+        startGame.currentLocation.put("Hall 14",hall14);
         Location hall15 = new Location("Hall 15");
-        startGame.currentLocation.put("hall15",hall15);
+        startGame.currentLocation.put("Hall 15",hall15);
         Location hall16 = new Location("Hall 16");
-        startGame.currentLocation.put("hall16",hall16);
+        startGame.currentLocation.put("Hall 16",hall16);
         Location hall17 = new Location("Hall 17");
-        startGame.currentLocation.put("hall17",hall17);
+        startGame.currentLocation.put("Hall 17",hall17);
         Location hall18 = new Location("Hall 18");
-        startGame.currentLocation.put("hall18", hall18);
+        startGame.currentLocation.put("Hall 18", hall18);
         Location hall19 = new Location("Hall 19");
-        startGame.currentLocation.put("hall19",hall19);
+        startGame.currentLocation.put("Hall 19",hall19);
         Location hall20 = new Location("Hall 20");
-        startGame.currentLocation.put("hall20", hall20);
+        startGame.currentLocation.put("Hall 20", hall20);
         Location hall21 = new Location("Hall 21");
-        startGame.currentLocation.put("hall21", hall21);
+        startGame.currentLocation.put("Hall 21", hall21);
         Location hall22 = new Location("Hall 22");
-        startGame.currentLocation.put("hall22", hall22);
+        startGame.currentLocation.put("Hall 22", hall22);
         Location hall23 = new Location("Hall 23");
-        startGame.currentLocation.put("hall23", hall23);
+        startGame.currentLocation.put("Hall 23", hall23);
         Location hall24 = new Location("Hall 24");
-        startGame.currentLocation.put("hall24", hall24);
+        startGame.currentLocation.put("Hall 24", hall24);
         Location hall25 = new Location("Hall 25");
-        startGame.currentLocation.put("hall25", hall25);
+        startGame.currentLocation.put("Hall 25", hall25);
 
 //       Todo: refactor hardcoding
 //        for(int i = 1; i < 26 ; i++){
@@ -185,15 +185,14 @@ public class CreateGameController {
         hall25.adjacentLocations.add(study);
         hall25.adjacentLocations.add(hall3);
         hall25.adjacentLocations.add(hall4);
-        System.out.println(startGame.toString());
 
         return new RedirectView("/");
     }
 
     @GetMapping("/playerJoin")
     public RedirectView playerJoinGame(Principal principal){
-        Player newPlayer = new Player(principal.getName(), startGame.currentLocation.get("conferenceRoom"));
-        startGame.currentLocation.get("conferenceRoom").playersAtCurrentLocation.add(newPlayer);
+        Player newPlayer = new Player(principal.getName(), startGame.currentLocation.get("Conference Room"));
+        startGame.currentLocation.get("Conference Room").playersAtCurrentLocation.add(newPlayer);
         startGame.playerList.put(principal.getName(), newPlayer);
 
         return new RedirectView("/game");
