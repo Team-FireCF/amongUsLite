@@ -15,7 +15,7 @@ public class GameStateController {
     @GetMapping("/game")
     public String showTheGame(Principal principal, Model m){
         m.addAttribute("playerOne", CreateGameController.startGame.playerList.get(principal.getName()) );
-        m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values() );
+        m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values());
         return "game";
     }
 

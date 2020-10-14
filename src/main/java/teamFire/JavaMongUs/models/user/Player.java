@@ -2,10 +2,13 @@ package teamFire.JavaMongUs.models.user;
 
 import teamFire.JavaMongUs.models.location.Location;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
 
     public String username;
-    public boolean dead = false;
+    public boolean dead = true;
     public boolean impostor = false;
     public Location playerLocation;
     //ToDo: Add tasks
@@ -47,4 +50,9 @@ public class Player {
     public void setPlayerLocation(Location playerLocation) {
         this.playerLocation = playerLocation;
     }
+
+
+
+
 }
+
