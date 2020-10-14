@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+
+
+        <form action="/update" method="POST" th:if="${playerOne.impostor == false}"> <!--change to true, false just to see -->
+            <legend>Kill Someone!</legend>
+            <span  th:each="player : ${playerOne.playerLocation.playersAtCurrentLocation}">
+                <input type="radio"  th:id="${player.getUsername()}" name="kill" th:value="${player.getUsername()}">
+                <label th:for="${player.getUsername()}" th:text ="${player.getUsername()}"></label><br>
+            </span>
+            <input type="submit" name="kill" id="kill" value="Kill">
+
+        </form>
+
+    </div>
+
+</body>
+</html>
