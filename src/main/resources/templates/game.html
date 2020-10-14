@@ -7,12 +7,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <script src="/app.js"></script>
+    <link rel="stylesheet" href="styles.css">
+
 
 </head>
-<body>
-<div th:if="${principal != null}" th:replace="fragments/message :: body">
+<header>
+    <div id="headerGame">
+        <img src="https://via.placeholder.com/1600x200" alt="">
 
-</div>
+    </div>
+</header>
+<body>
+    <div id="gameBoard">
+            <div id="actionPlace">
+                <div id="aroundMe">
+                    <h2>Whos Around!?</h2>
+                </div>
+                <div id="map">
+                    <img src="https://via.placeholder.com/520x370.png?text=This + is + the + map!" alt="">
+                </div>
+            </div>
+            <div id="infoMessage">
+                <div id="deadAlive">
+                    <img src="https://via.placeholder.com/270x270.png?text=Dead + Alive" alt="">
+                </div>
+                <div id="chat">
+                    <div th:if="${principal != null}" th:replace="fragments/message :: body"></div>
+                </div>
+            </div>
+
+
+
+    </div>
+
 
 </body>
 </html>
