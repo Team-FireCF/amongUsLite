@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import java.security.Principal;
 import java.util.Map;
+import java.util.Random;
 
 @Controller
 public class CreateGameController {
@@ -194,10 +195,30 @@ public class CreateGameController {
         Player newPlayer = new Player(principal.getName(), startGame.currentLocation.get("Conference Room"));
         startGame.currentLocation.get("Conference Room").playersAtCurrentLocation.add(newPlayer);
         startGame.playerList.put(principal.getName(), newPlayer);
+        startGame.playerList.get(principal.getName()).taskList.add("Conference Room");
+        startGame.playerList.get(principal.getName()).taskList.add("Lounge");
+        startGame.playerList.get(principal.getName()).taskList.add("Zoom Room");
+        startGame.playerList.get(principal.getName()).taskList.add("CodeFellows Room");
+        startGame.playerList.get(principal.getName()).taskList.add("Oxygen Room");
+        startGame.playerList.get(principal.getName()).taskList.add("Electrical Room");
+        startGame.playerList.get(principal.getName()).taskList.add("Study");
+        startGame.playerList.get(principal.getName()).taskList.add("Remo Room");
+        startGame.playerList.get(principal.getName()).taskList.add("Computer Room");
 
+        ArrayList taskArr = startGame.playerList.get(principal.getName()).taskList;
+        Random random = new Random();
+        taskArr.remove(getRandomNumberUsingInts(0, (taskArr.size()-1)));
+        taskArr.remove(getRandomNumberUsingInts(0, (taskArr.size()-1)));
+        System.out.println(startGame.playerList.get(principal.getName()).taskList.toString());
         return new RedirectView("/game");
     }
 
+    private int getRandomNumberUsingInts(int min, int max) {
+        Random random = new Random();
+        return random.ints(min, max)
+                .findFirst()
+                .getAsInt();
+    }
 
 
 }
