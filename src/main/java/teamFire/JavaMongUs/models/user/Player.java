@@ -11,6 +11,7 @@ public class Player {
     public boolean dead = false;
     public boolean impostor = false;
     public Location playerLocation;
+    public ArrayList<String> taskList = new ArrayList<>();
     //ToDo: Add tasks
 
 

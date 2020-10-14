@@ -49,7 +49,7 @@ public class GameStateController {
         getLocation.playersAtCurrentLocation.add(getPlayer);
 
         getPlayer.setPlayerLocation(getLocation);
-        
+
 
         while(playerUpdateCounter < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
 
