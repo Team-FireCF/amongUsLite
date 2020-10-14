@@ -196,6 +196,7 @@ public class CreateGameController {
         startGame.currentLocation.get("conferenceRoom").playersAtCurrentLocation.add(newPlayer);
         startGame.playerList.put(principal.getName(), newPlayer);
         System.out.println(startGame.playerList.get(principal.getName()).getPlayerLocation().locationName);
+        System.out.println(startGame.playerList.get(principal.getName()).isDead()); // also works with player.dead  (T/F)
 
 
         return new RedirectView("/game");
