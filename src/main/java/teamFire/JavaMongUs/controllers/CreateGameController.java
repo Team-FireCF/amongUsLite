@@ -195,7 +195,7 @@ public class CreateGameController {
         Player newPlayer = new Player(principal.getName(), startGame.currentLocation.get("conferenceRoom"));
         startGame.currentLocation.get("conferenceRoom").playersAtCurrentLocation.add(newPlayer);
         startGame.playerList.put(principal.getName(), newPlayer);
-        System.out.println(startGame.playerList.get(principal.getName()).getPlayerLocation().locationName);
+        System.out.println(startGame.playerList.get(principal.getName()).getPlayerLocation().adjacentLocations);
 
 
         return new RedirectView("/game");

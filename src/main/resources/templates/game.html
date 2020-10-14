@@ -7,6 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <script src="/app.js"></script>
+    <script src="/timer.js"></script>
     <link rel="stylesheet" href="styles.css">
 
 
@@ -24,8 +25,9 @@
                     <h2>Whos Around!?</h2>
                 </div>
                 <div id="map">
-                    <img src="https://via.placeholder.com/520x370.png?text=This + is + the + map!" alt="">
-                </div>
+                    <img src="/JavaMongUs_map.png" alt="">
+                </div>           
+                <div th:if="${principal}" th:replace="fragments/timer.html :: #timer"></div>
                 <div id="placesToGo">
                     <h3>Places You Can Go</h3>
                     <section>
@@ -48,6 +50,7 @@
             </div>
 
 
+    <a href="/meeting">Call Meeting</a>
 
     </div>
 
