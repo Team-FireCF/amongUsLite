@@ -7,6 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <script src="/app.js"></script>
+    <script src="/timer.js"></script>
     <link rel="stylesheet" href="styles.css">
 
 
@@ -24,19 +25,16 @@
                     <h2>Whos Around!?</h2>
                 </div>
                 <div id="map">
-                    <img src="https://via.placeholder.com/520x370.png?text=This + is + the + map!" alt="">
+                    <img src="/JavaMongUs_map.png" alt="">
                 </div>
-            </div>
-            <div id="infoMessage">
-                <div id="deadAlive">
-                    <img src="https://via.placeholder.com/270x270.png?text=Dead + Alive" alt="">
-                </div>
-                <div id="chat">
-                    <div th:if="${principal != null}" th:replace="fragments/message :: body"></div>
+<!--                    <div id="timer" style="'font-size: 15px; font-weight: bolder; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;'"></div>-->
+                <div th:if="${principal}" th:replace="fragments/timer.html :: #timer"></div>
+
                 </div>
             </div>
 
 
+    <a href="/meeting">Call Meeting</a>
 
     </div>
 
