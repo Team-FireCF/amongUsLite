@@ -25,6 +25,10 @@
 
     <div id="gameBoard">
             <div id="actionPlace">
+                <div id="currentLocation">
+                    <h2>Where am I?</h2>
+                    <p th:text="${playerOne.playerLocation.locationName}"></p>
+                </div>
                 <div id="aroundMe">
                     <h2>Whos Around!?</h2>
                     <div>
