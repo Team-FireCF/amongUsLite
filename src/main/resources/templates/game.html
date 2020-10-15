@@ -35,15 +35,26 @@
                 <div id="placesToGo">
                     <h3>Places You Can Go</h3>
                     <section>
-
                         <form action="/gameUpdate" method="post" id="placesToGoJs">
+<!--                          This is change location  -->
                             <span th:each="location : ${playerOne.playerLocation.adjacentLocations}">
-
-                                <input type="radio"  th:id="${location.getName()}" name="location" th:value="${location.getName()}">
+                                <input type="radio"  th:id="${location.getName()}" name="location" th:value="!${location.getName()}">
                                 <label th:for="${location.getName()}" th:text ="${location.getName()}"></label><br>
                             </span>
-                            <input type="radio" name="location" id="stayHere">
+                            <input type="radio" name="location" id="stayHere" value="!stayHere">
                             <label for="stayHere">Stay Here</label>
+<!--                            End change location                 -->
+<!--                            This is tasks         -->
+
+
+
+
+
+
+
+<!--                            End tasks-->
+
+
                         </form>
                     </section>
                 </div>
