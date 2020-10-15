@@ -21,7 +21,6 @@
 <body>
     <div th:replace="fragments/logout :: a"></div>
     <div th:replace="fragments/homeButton :: a"></div>
-    <div th:replace="fragments/report :: a"></div>
 
     <div id="gameBoard">
             <div id="actionPlace">
@@ -51,22 +50,29 @@
                                 <input type="radio"  th:id="${location.getName()}" name="location" th:value="${location.getName()}">
                                 <label th:for="${location.getName()}" th:text ="${location.getName()}"></label><br>
                             </span>
-                            <input type="radio" name="location" id="stayHere" value="!stayHere" checked>
-                            <label for="stayHere">Stay Here</label>
+                            <input type="radio" th:id="${playerOne.playerLocation.locationName}" name="location"  th:value="${playerOne.playerLocation.locationName}" checked>
+                            <label th:for="${playerOne.playerLocation.locationName}">Stay Here</label>
 <!--                            End change location                 -->
 <!--                            This is tasks         -->
-                            <div th:if="${playerOne.taskList.contains(playerOne.playerLocation.locationName)}">
-                                <h3>Would you like to complete this task?</h3>
+                            <span th:if="${playerOne.taskList.contains(playerOne.playerLocation.locationName)}">
+                                <h3>This room has an uncompleted task, would you like to complete it now?</h3>
 
                                 <input  type="radio" th:id="${playerOne.playerLocation.locationName}" name="task" th:value="${playerOne.playerLocation.locationName}">
                                 <label  th:for="${playerOne.playerLocation.getName()}">Yes</label><br>
                                 <input id="No"type="radio" name="task" checked>
                                 <label for="No">No</label>
-                            </div>
+                            </span>
 
 <!--                            End tasks-->
 <!--                            This is report         -->
+                            <span th:if="${playerOne.playerLocation.deadBody == true}">
+                                <h3>Dead body found! Would you like to report it?</h3><!--maybe have an alert pop up? -->
 
+                                <input  type="radio" th:id="${playerOne.playerLocation.locationName}" name="report" th:value="${playerOne.playerLocation.locationName}">
+                                <label  th:for="${playerOne.playerLocation.getName()}">Yes</label><br>
+                                <input id="NoTwo"type="radio" name="report" checked>
+                                <label for="No">No</label>
+                            </span>
 
 <!--                            End report-->
 
@@ -76,9 +82,7 @@
                     </section>
                 </div>
             </div>
-                <div>
-                    <div th:replace="fragments/kill :: div"></div>
-                </div>
+
             </div>
 
 
