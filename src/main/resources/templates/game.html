@@ -50,17 +50,16 @@
                                 <input type="radio"  th:id="${location.getName()}" name="location" th:value="${location.getName()}">
                                 <label th:for="${location.getName()}" th:text ="${location.getName()}"></label><br>
                             </span>
-                            <input type="radio" th:id="${playerOne.playerLocation.locationName}" name="location"  th:value="${playerOne.playerLocation.locationName}" checked>
+                            <input type="radio" th:id="${playerOne.playerLocation.locationName}" name="location"  th:value="'!'+${playerOne.playerLocation.locationName}" checked>
                             <label th:for="${playerOne.playerLocation.locationName}">Stay Here</label>
 <!--                            End change location                 -->
 <!--                            This is tasks         -->
                             <span th:if="${playerOne.taskList.contains(playerOne.playerLocation.locationName)}">
                                 <h3>This room has an uncompleted task, would you like to complete it now?</h3>
 
-                                <input  type="radio" th:id="${playerOne.playerLocation.locationName}" name="task" th:value="${playerOne.playerLocation.locationName}">
+                                <input  type="radio" th:id="${playerOne.playerLocation.locationName}" name="location" th:value="'&'+${playerOne.playerLocation.locationName}">
                                 <label  th:for="${playerOne.playerLocation.getName()}">Yes</label><br>
-                                <input id="No"type="radio" name="task" checked>
-                                <label for="No">No</label>
+
                             </span>
 
 <!--                            End tasks-->
@@ -68,9 +67,9 @@
                             <span th:if="${playerOne.playerLocation.deadBody == true}">
                                 <h3>Dead body found! Would you like to report it?</h3><!--maybe have an alert pop up? -->
 
-                                <input  type="radio" th:id="${playerOne.playerLocation.locationName}" name="report" th:value="${playerOne.playerLocation.locationName}">
+                                <input  type="radio" th:id="${playerOne.playerLocation.locationName}" name="location" th:value="'#'+${playerOne.playerLocation.locationName}">
                                 <label  th:for="${playerOne.playerLocation.getName()}">Yes</label><br>
-                                <input id="NoTwo"type="radio" name="report" checked>
+                                <input id="No"type="radio" name="location" checked>
                                 <label for="No">No</label>
                             </span>
 
