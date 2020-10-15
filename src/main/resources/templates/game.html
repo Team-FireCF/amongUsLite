@@ -28,6 +28,9 @@
                 <div id="aroundMe">
                     <h2>Whos Around!?</h2>
                 </div>
+                <div>
+                    <div th:replace="fragments/taskList :: div"></div>
+                </div>
                 <div id="map">
                     <img src="/JavaMongUs_map.png" alt="">
                 </div>
@@ -47,10 +50,7 @@
                         </form>
                     </section>
                 </div>
-
             </div>
-
-
                 <div>
                     <div th:replace="fragments/kill :: div"></div>
                 </div>

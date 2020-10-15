@@ -52,6 +52,7 @@ public class Player {
         this.playerLocation = playerLocation;
     }
 
+    public ArrayList<String> getTasks(){return taskList;}
 
     @Override
     public String toString() {
