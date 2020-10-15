@@ -3,10 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-    <script src="/app.js"></script>
     <script src="/timer.js"></script>
     <link rel="stylesheet" href="styles.css">
 
@@ -23,7 +19,7 @@
     <div th:replace="fragments/homeButton :: a"></div>
     <div th:replace="fragments/report :: a"></div>
 
-    <div id="gameBoard">
+    <div class="gameBoard">
             <div id="actionPlace">
                 <div id="aroundMe">
                     <h2>Whos Around!?</h2>
@@ -41,7 +37,7 @@
                         <form action="/gameUpdate" method="post" id="placesToGoJs">
 <!--                          This is change location  -->
                             <span th:each="location : ${playerOne.playerLocation.adjacentLocations}">
-                                <input type="radio"  th:id="${location.getName()}" name="location" th:value="!${location.getName()}">
+                                <input type="radio"  th:id="${location.getName()}" name="location" th:value="'!' + ${location.getName()}">
                                 <label th:for="${location.getName()}" th:text ="${location.getName()}"></label><br>
                             </span>
                             <input type="radio" name="location" id="stayHere" value="!stayHere">

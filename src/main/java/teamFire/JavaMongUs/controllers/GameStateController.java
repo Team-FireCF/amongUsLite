@@ -16,6 +16,7 @@ public class GameStateController {
     int playerUpdateCounter = 0;
     @GetMapping("/game")
     public String showTheGame(Principal principal, Model m){
+        System.out.println(CreateGameController.startGame.playerList.get("q").toString());
         m.addAttribute("playerOne", CreateGameController.startGame.playerList.get(principal.getName()) );
         m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values());
         return "game";
@@ -25,7 +26,8 @@ public class GameStateController {
     public String startGame(Principal principal, Model m) {
         m.addAttribute("playerOne", CreateGameController.startGame.playerList.get(principal.getName()) );
         m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values() );
-        return "game";
+        m.addAttribute("startTimer", CreateGameController.startGame.startTimer);
+        return "start";
     }
 
     @GetMapping("/meeting")
@@ -38,6 +40,7 @@ public class GameStateController {
     @PostMapping("/gameUpdate")
     public RedirectView updateGameState(Principal principal, String location) throws InterruptedException {
         playerUpdateCounter++;
+        System.out.println(location);
         char sym = location.charAt(0);
         String bol = String.format("%c", sym);
         switch (bol){
@@ -63,20 +66,25 @@ public class GameStateController {
 
     public RedirectView changeLocation (Principal principal, String location) throws InterruptedException {
         String str = location.substring(1);
-        Player getPlayer = CreateGameController.startGame.playerList.get(principal.getName());
-        getPlayer.getPlayerLocation().playersAtCurrentLocation.remove(getPlayer);
-        Location getLocation = CreateGameController.startGame.currentLocation.get(str);
-        getLocation.playersAtCurrentLocation.add(getPlayer);
-        getPlayer.setPlayerLocation(getLocation);
-        while(playerUpdateCounter < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
-        if(CreateGameController.startGame.discuss){
+        if (!str.equals("stayHere")) {
+            Player getPlayer = CreateGameController.startGame.playerList.get(principal.getName());
+            getPlayer.getPlayerLocation().playersAtCurrentLocation.remove(getPlayer);
+            Location getLocation = CreateGameController.startGame.currentLocation.get(str);
+            getLocation.playersAtCurrentLocation.add(getPlayer);
+            getPlayer.setPlayerLocation(getLocation);
+        }
+
+        while (playerUpdateCounter < CreateGameController.startGame.playerList.values().size()) {
+            Thread.sleep(50);
+        }
+
+        if (CreateGameController.startGame.discuss) {
             return new RedirectView("/meeting");
         } else {
             return new RedirectView("/game");
         }
     }
-
-    public RedirectView report (Principal principal, String location) throws InterruptedException {
+        public RedirectView report (Principal principal, String location) throws InterruptedException {
         String str = location.substring(1);
         Location getLocation = CreateGameController.startGame.currentLocation.get(str);
         getLocation.deadBody = false;
@@ -105,9 +113,9 @@ public class GameStateController {
     }
 
     public RedirectView kill (Principal principal, String location){
-        String str = location.substring(1);
-        Location getLocation = CreateGameController.startGame.currentLocation.get(str);
-        Player getPlayer = CreateGameController.startGame.playerList.get(getLocation.playersAtCurrentLocation.);
+//        String str = location.substring(1);
+//        Location getLocation = CreateGameController.startGame.currentLocation.get(str);
+//        Player getPlayer = CreateGameController.startGame.playerList.get(getLocation.playersAtCurrentLocation.);
 
         if(CreateGameController.startGame.discuss){
             return new RedirectView("/meeting");
