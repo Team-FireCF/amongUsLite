@@ -38,6 +38,9 @@ public class GameStateController {
     @PostMapping("/gameUpdate")
     public RedirectView updateGameState(Principal principal, String location) throws InterruptedException {
         playerUpdateCounter++;
+        if(location == null){
+            changeLocation(principal, "stayHere");
+        }
         char sym = location.charAt(0);
         String bol = String.format("%c", sym);
         switch (bol){
@@ -63,11 +66,13 @@ public class GameStateController {
 
     public RedirectView changeLocation (Principal principal, String location) throws InterruptedException {
         String str = location.substring(1);
-        Player getPlayer = CreateGameController.startGame.playerList.get(principal.getName());
-        getPlayer.getPlayerLocation().playersAtCurrentLocation.remove(getPlayer);
-        Location getLocation = CreateGameController.startGame.currentLocation.get(str);
-        getLocation.playersAtCurrentLocation.add(getPlayer);
-        getPlayer.setPlayerLocation(getLocation);
+        if(!str.equals("stayHere")){
+            Player getPlayer = CreateGameController.startGame.playerList.get(principal.getName());
+            getPlayer.getPlayerLocation().playersAtCurrentLocation.remove(getPlayer);
+            Location getLocation = CreateGameController.startGame.currentLocation.get(str);
+            getLocation.playersAtCurrentLocation.add(getPlayer);
+            getPlayer.setPlayerLocation(getLocation);
+        }
         while(playerUpdateCounter < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
         if(CreateGameController.startGame.discuss){
             return new RedirectView("/meeting");
@@ -126,6 +131,8 @@ public class GameStateController {
             return new RedirectView("/game");
         }
     }
+
+
 }
 
 

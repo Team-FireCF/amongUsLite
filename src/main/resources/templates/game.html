@@ -59,12 +59,21 @@
 
 
                         </form>
+<!--                        Kill Form => should this be a separate form? where is it routed to?-->
+                        <form action="/gameUpdate" method="POST" th:if="${playerOne.impostor == false and playerOne.playerLocation.playersAtCurrentLocation != playerOne.impostor}"> <!--change imposter back to true, false just to see -->
+                            <legend>Would you like to <strong>KILL</strong> someone?</legend>
+                            <span th:each="player : ${playerOne.playerLocation.playersAtCurrentLocation}">
+                                <input type="radio"  th:id="${player.getUsername()}" name="kill" th:value="${player.getUsername()}">
+                                <label th:for="${player.getUsername()}" th:text ="${player.getUsername()}"></label><br>
+                            </span>
+                        </form>
+<!--                        End kill form                                                      -->
                     </section>
                 </div>
             </div>
-                <div>
-                    <div th:replace="fragments/kill :: div"></div>
-                </div>
+<!--                <div>-->
+<!--                    <div th:replace="fragments/kill :: div"></div>-->
+<!--                </div>-->
             </div>
 
 
