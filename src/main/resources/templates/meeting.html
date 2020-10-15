@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="/app.js"></script>
+    <script src="/longTimer.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<header>
+    <div id="headerGame">
+        <img src="https://via.placeholder.com/1600x200" alt="">
+
+    </div>
+</header>
+<body>
+    <div id="meetingBoard">
+        <div id="meetingMap">
+            <img src="/JavaMongUs_map.png" alt="">
+        </div>
+        <div th:if="${principal}" th:replace="fragments/timer.html :: #timer"></div>
+
+        <div id="infoMessage">
+            <!--   ==== Dead or Alive Starts Below =====-->
+            <div id="deadAlive">
+                <div th:replace="fragments/deadAlive :: ul"></div>
+            </div>
+            <!--   ==== Dead or Alive Contents Above =====-->
+            <div id="chat">
+                <div th:if="${principal != null}" th:replace="fragments/message :: body"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

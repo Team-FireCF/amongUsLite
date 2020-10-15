@@ -5,11 +5,10 @@ package teamFire.JavaMongUs.models.user;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -21,6 +20,9 @@ public class ApplicationUser implements UserDetails {
 
     String username;
     String password;
+
+
+
 
     public ApplicationUser(){}
 
