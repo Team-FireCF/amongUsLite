@@ -65,6 +65,12 @@ public class GameStateController {
         }
     }
 
+    @PostMapping("/game/vote")
+    public RedirectView countVotes(Principal principal, String location){
+        playerUpdateCounter++;
+
+    }
+
     public RedirectView changeLocation (Principal principal, String location) throws InterruptedException {
         String str = location.substring(1);
         if(!str.equals("stayHere")){
