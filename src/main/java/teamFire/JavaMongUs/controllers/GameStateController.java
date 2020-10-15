@@ -10,6 +10,7 @@ import teamFire.JavaMongUs.models.location.Location;
 import teamFire.JavaMongUs.models.user.Player;
 
 import java.security.Principal;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class GameStateController {
@@ -23,7 +24,12 @@ public class GameStateController {
     }
 
     @GetMapping("/startGame")
-    public String startGame(Principal principal, Model m) {
+    public String startGame(Principal principal, Model m) throws InterruptedException {
+        System.out.println(principal.getName());
+        System.out.println(CreateGameController.startGame.getGameStartedBy());
+        if(principal.getName().equals(CreateGameController.startGame.gameStartedBy)) {
+            startTimer();
+        }
         m.addAttribute("playerOne", CreateGameController.startGame.playerList.get(principal.getName()) );
         m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values() );
         m.addAttribute("startTimer", CreateGameController.startGame.startTimer);
@@ -132,6 +138,30 @@ public class GameStateController {
             return new RedirectView("/meeting");
         } else {
             return new RedirectView("/game");
+        }
+    }
+
+    public void startTimer() throws InterruptedException {
+
+        boolean x=true;
+        long startTime=System.currentTimeMillis();
+        while(x) {
+            TimeUnit.SECONDS.sleep(1);
+            long timepassed=System.currentTimeMillis()-startTime;
+            long secondspassed=timepassed/1000;
+            if(secondspassed==60) {
+                CreateGameController.startGame.startTimer = -1;
+                x = false;
+                CreateGameController.startGame.joinGame = false;
+
+            }
+            if(secondspassed < 60)   {
+                CreateGameController.startGame.startTimer++;
+                System.out.println(CreateGameController.startGame.startTimer);
+            }
+
+
+            System.out.println(CreateGameController.startGame.startTimer);
         }
     }
 }

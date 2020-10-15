@@ -11,17 +11,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
 </head>
+<header>
+    <div id="headerGame">
+        <img src="https://via.placeholder.com/1600x200" alt="">
+
+    </div>
+</header>
 <body>
     <h1>JavaMongUs HomePage</h1>
 
-    <form action="/newuser" method="POST">
-        <input type="text" name="username" placeholder="Enter Username">
-        <input type="password" name="password" placeholder="Enter Password">
-        <input type="submit">
-    </form>
+    <a href="/login">Login</a>
+    <br>
+    <a href="/signup">Sign Up</a>
 
-    <section th:if="${principal != null}">
+    <br>
+    <br>
+    <section th:if="${principal != null and !gameState.gameInProgress}">
         <a href="/create">Create New Game</a>
+    </section>
+    <h4 th:if="${principle != null and !gameState.joinGame and gameState.gameInProgress}" th:text="${gameState.gameStartedBy has a game in progress! Please wait...}"></h4>
+    <br>
+    <br>
+    <section th:if="${principal != null and gameState.joinGame}">
         <a href="/playerJoin">Login to Game</a>
     </section>
 </body>

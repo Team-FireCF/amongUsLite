@@ -14,12 +14,76 @@ public class GameState {
     public HashMap<String, Location> currentLocation = new HashMap<>();
     public Boolean discuss = false;
     public long startTimer = 0;
-    public boolean game = false;
+    public boolean joinGame = false;
+    public boolean gameInProgress = false;
+    public String gameStartedBy;
+
+    public HashMap<String, Player> getPlayerList() {
+        return playerList;
+    }
+
+    public void setPlayerList(HashMap<String, Player> playerList) {
+        this.playerList = playerList;
+    }
+
+    public HashMap<String, Location> getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public void setCurrentLocation(HashMap<String, Location> currentLocation) {
+        this.currentLocation = currentLocation;
+    }
+
+    public Boolean getDiscuss() {
+        return discuss;
+    }
+
+    public void setDiscuss(Boolean discuss) {
+        this.discuss = discuss;
+    }
+
+    public long getStartTimer() {
+        return startTimer;
+    }
+
+    public void setStartTimer(long startTimer) {
+        this.startTimer = startTimer;
+    }
+
+    public boolean isJoinGame() {
+        return joinGame;
+    }
+
+    public void setJoinGame(boolean joinGame) {
+        this.joinGame = joinGame;
+    }
+
+    public boolean isGameInProgress() {
+        return gameInProgress;
+    }
+
+    public void setGameInProgress(boolean gameInProgress) {
+        this.gameInProgress = gameInProgress;
+    }
+
+    public String getGameStartedBy() {
+        return gameStartedBy;
+    }
+
+    public void setGameStartedBy(String gameStartedBy) {
+        this.gameStartedBy = gameStartedBy;
+    }
 
     @Override
     public String toString() {
         return "GameState{" +
-                "startTimer=" + startTimer +
+                "playerList=" + playerList +
+                ", currentLocation=" + currentLocation +
+                ", discuss=" + discuss +
+                ", startTimer=" + startTimer +
+                ", joinGame=" + joinGame +
+                ", gameInProgress=" + gameInProgress +
+                ", gameStartedBy='" + gameStartedBy + '\'' +
                 '}';
     }
 }

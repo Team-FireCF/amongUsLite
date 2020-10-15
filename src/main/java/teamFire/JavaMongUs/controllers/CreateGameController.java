@@ -23,6 +23,9 @@ public class CreateGameController {
 
     @GetMapping("/create")
     public RedirectView createGame(Principal principal) throws InterruptedException {
+        startGame.setJoinGame(true);
+        startGame.setGameStartedBy(principal.getName());
+        startGame.setGameInProgress(true);
         Location conferenceRoom = new Location("Conference Room");
         startGame.currentLocation.put("Conference Room", conferenceRoom);
         Location lounge = new Location("Lounge");
@@ -189,16 +192,16 @@ public class CreateGameController {
         hall25.adjacentLocations.add(hall3);
         hall25.adjacentLocations.add(hall4);
 
-        startTimer();
-        return new RedirectView("/");
+        return new RedirectView("/playerJoin");
     }
 
     @GetMapping("/playerJoin")
     public RedirectView playerJoinGame(Principal principal){
         Player newPlayer = new Player(principal.getName(), startGame.currentLocation.get("Conference Room"));
         startGame.currentLocation.get("Conference Room").playersAtCurrentLocation.add(newPlayer);
-        System.out.println(newPlayer.getPlayerLocation().toString());
+
         startGame.playerList.put(principal.getName(), newPlayer);
+        System.out.println(newPlayer.getPlayerLocation().toString());
         System.out.println("playerjoined: " + principal.getName() + startGame.playerList.size());
         startGame.playerList.get(principal.getName()).taskList.add("Conference Room");
         startGame.playerList.get(principal.getName()).taskList.add("Lounge");
@@ -243,27 +246,6 @@ public class CreateGameController {
                 .getAsInt();
     }
 
-    private void startTimer() throws InterruptedException {
 
-        boolean x=true;
-        long displayMinutes=0;
-        long starttime=System.currentTimeMillis();
-        while(x) {
-            TimeUnit.SECONDS.sleep(1);
-            long timepassed=System.currentTimeMillis()-starttime;
-            long secondspassed=timepassed/1000;
-            if(secondspassed==60) {
-                startGame.startTimer = -1;
-                x = false;
-
-            }
-            if(secondspassed < 60)   {
-                startGame.startTimer++;
-            }
-
-
-            System.out.println(startGame.startTimer);
-        }
-    }
 }
 
