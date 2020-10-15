@@ -32,6 +32,7 @@ public class GameStateController {
     public String showMeeting(Principal principal, Model m) {
         m.addAttribute("playerOne", CreateGameController.startGame.playerList.get(principal.getName()) );
         m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values() );
+
         return "meeting";
     }
 
@@ -112,7 +113,7 @@ public class GameStateController {
     public RedirectView kill (Principal principal, String location){
         String str = location.substring(1);
         Location getLocation = CreateGameController.startGame.currentLocation.get(str);
-        Player getPlayer = CreateGameController.startGame.playerList.get(getLocation.playersAtCurrentLocation.);
+        Player getPlayer = CreateGameController.startGame.playerList.get(getLocation.playersAtCurrentLocation);
 
         if(CreateGameController.startGame.discuss){
             return new RedirectView("/meeting");

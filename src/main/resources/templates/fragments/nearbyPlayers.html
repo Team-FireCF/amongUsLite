@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <ul  style="list-style-type:none"th:each="location : ${playerOne.playerLocation.adjacentLocations}">
+            <li th:text="${location.getName()}">
+                <ul th:each="player : ${playerOne.playerLocation.playersAtCurrentLocation}">
+                    <li th:text="${player.getUsername()}"></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+</body>
+</html>
