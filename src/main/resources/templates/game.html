@@ -10,57 +10,90 @@
 </head>
 <header>
     <div id="headerGame">
-        <img src="https://via.placeholder.com/1600x200" alt="">
-
+        <div id="gameName"><section>JavaMongUs</section></div>
+        <div id="gamePlayers"><ul><li th:replace="fragments/gamePlayers :: li"></li></ul></div>
     </div>
 </header>
 <body>
     <div th:replace="fragments/logout :: a"></div>
     <div th:replace="fragments/homeButton :: a"></div>
-    <div th:replace="fragments/report :: a"></div>
 
     <div class="gameBoard">
             <div id="actionPlace">
-                <div id="aroundMe">
-                    <h2>Whos Around!?</h2>
-                </div>
-                <div>
-                    <div th:replace="fragments/taskList :: div"></div>
-                </div>
                 <div id="map">
                     <img src="/JavaMongUs_map.png" alt="">
                 </div>
-                <div th:if="${principal}" th:replace="fragments/timer.html :: #timer"></div>
-                <div id="placesToGo">
-                    <h3>Places You Can Go</h3>
-                    <section>
-                        <form action="/gameUpdate" method="post" id="placesToGoJs">
-<!--                          This is change location  -->
-                            <span th:each="location : ${playerOne.playerLocation.adjacentLocations}">
-                                <input type="radio"  th:id="${location.getName()}" name="location" th:value="'!' + ${location.getName()}">
-                                <label th:for="${location.getName()}" th:text ="${location.getName()}"></label><br>
-                            </span>
-                            <input type="radio" name="location" id="stayHere" value="!stayHere">
-                            <label for="stayHere">Stay Here</label>
-<!--                            End change location                 -->
-<!--                            This is tasks         -->
+                <div id="rightSide">
+                    <div id="timer">
+                        <div th:if="${principal}" th:replace="fragments/timer.html :: #timer"></div>
+                    </div>
 
-
-
-
-
-
-
-<!--                            End tasks-->
-
-
-                        </form>
-                    </section>
+                    <div id="currentLocation">
+                        <h2 style="width:100%;">Where am I?</h2>
+                        <p th:text="${playerOne.playerLocation.locationName}" style="flex-grow:0;"></p>
+                    </div>
+                    <div id="aroundMe">
+                        <h2 style="width:100%;">Who's Around!?</h2>
+                        <div>
+                            <div th:replace="fragments/nearbyPlayers :: div"></div>
+                        </div>
+                    </div>
                 </div>
+                <div id="tasks">
+                    <div th:replace="fragments/taskList :: div"></div>
+                </div>
+
             </div>
-                <div>
-                    <div th:replace="fragments/kill :: div"></div>
-                </div>
+           <div id="actions">
+                  <form action="/gameUpdate" method="post" id="placesToGoJs">
+                    <!--                          This is change location  -->
+                      <h2>Actions</h2>
+                      <h3>Places You Can Go</h3>
+
+                      <span th:each="location : ${playerOne.playerLocation.adjacentLocations}">
+                            <input type="radio"  th:id="${location.getName()}" name="location" th:value="${location.getName()}">
+                            <label th:for="${location.getName()}" th:text ="${location.getName()}"></label><br>
+                        </span>
+                        <input type="radio" th:id="${playerOne.playerLocation.locationName}" name="location"  th:value="'!'+${playerOne.playerLocation.locationName}" checked>
+                        <label th:for="${playerOne.playerLocation.locationName}">Stay Here</label>
+                    <!--                            End change location                 -->
+                    <!--                            This is tasks         -->
+                        <span th:if="${playerOne.taskList.contains(playerOne.playerLocation.locationName)}">
+                            <h3>This room has an uncompleted task, would you like to complete it now?</h3>
+
+                            <input  type="radio" th:id="${playerOne.playerLocation.locationName}" name="location" th:value="'&'+${playerOne.playerLocation.locationName}">
+                            <label  th:for="${playerOne.playerLocation.getName()}">Yes</label><br>
+
+                        </span>
+
+                    <!--                            End tasks-->
+                    <!--                            This is report         -->
+                    <span th:if="${playerOne.playerLocation.deadBody == true}">
+                        <h3>Dead body found! Would you like to report it?</h3><!--maybe have an alert pop up? -->
+
+                        <input  type="radio" th:id="${playerOne.playerLocation.locationName}" name="location" th:value="'#'+${playerOne.playerLocation.locationName}">
+                        <label  th:for="${playerOne.playerLocation.getName()}">Yes</label><br>
+                    </span>
+
+                    <!--                            End report-->
+
+
+                </form>
+
+                <!--                        Kill Form => should this be a separate form? where is it routed to?-->
+                <form action="/gameUpdate" method="POST" th:if="${playerOne.impostor == false and playerOne.playerLocation.playersAtCurrentLocation != playerOne.impostor}"> <!--change imposter back to true, false just to see -->
+                    <legend>Would you like to <strong>KILL</strong> someone?</legend>
+                    <span th:each="player : ${playerOne.playerLocation.playersAtCurrentLocation}">
+                                <input type="radio"  th:id="${player.getUsername()}" name="kill" th:value="${player.getUsername()}">
+                                <label th:for="${player.getUsername()}" th:text ="${player.getUsername()}"></label><br>
+                            </span>
+                </form>
+                <!--                        End kill form                                                      -->
+        </div>
+<!--                <div>-->
+<!--                    <div th:replace="fragments/kill :: div"></div>-->
+<!--                </div>-->
+
             </div>
 
 

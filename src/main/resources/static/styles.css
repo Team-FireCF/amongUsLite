@@ -1,4 +1,6 @@
-.gameBoard {
+
+#gameBoard {
+
     width: 1600px;
     height: 900px;
     display: flex;
@@ -23,6 +25,15 @@
     border-radius: 25px;
     margin: 15px;
 }
+#actions {
+    display: flex;
+    flex-wrap: wrap;
+    width: 299px;
+    height: 870px;
+    background-color: chartreuse;
+    border-radius: 25px;
+    margin: 15px;
+}
 
 #infoMessage {
     width: 300px;
@@ -38,23 +49,64 @@
 }
 
 #aroundMe {
-    width: 1240px;
-    height: 100px;
+    width: 340px;
+    height: 206px;
     margin: 15px;
     display: flex;
+    flex-wrap: wrap;
+
     justify-content: center;
     background-color: lightslategrey;
 }
+/*width 1240
+  height 870 */
 
-#map {
-    width: 520px;
-    height: 370px;
+#rightSide {
+    width: 340px;
+    height: 620px;
     margin: 15px;
+    flex-wrap: wrap;
+    display:flex;
+    text-align:center;
+
+}
+#map {
+    width: 835px;
+    height: 620px;
+    margin: 15px;
+    flex-wrap: wrap;
+    display:flex;
+}
+#timer {
+    width:340;
+    height: 50px;
+    font-size:20px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+}
+#currentLocation {
+    width: 340px;
+    height: 106px;
+    margin: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+#tasks {
+    width:1210px;
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: left;
 }
 
 #map img {
-    max-width: 520px;
-    max-height: 370px;
+    max-width: 1200px;
+    max-height: 852px;
     margin: 15px;
     border-radius: 25px;
 }
@@ -83,6 +135,7 @@
     padding: 25px;
     border-radius: 25px;
 }
+
 
 #startBoard {
      width: 1600px;
@@ -120,4 +173,39 @@
     align-items: center;
     background-color: lightslategrey;
     margin-top: 15px;
+
+#headerGame{
+    display: flex;
+    width: 1600px;
+    height: 200px;
+}
+
+#gameName {
+    width: 1400px;
+    height: 200px;
+    font-size: 36px;
+    color: white;
+    background-color: black;
+    display: flex;
+}
+
+#gameName section{
+    display: flex;
+    width: 1400px;
+    height: 200px;
+}
+
+#gamePlayers{
+    width: 200px;
+    height: 200px;
+    color: black
+    display: flex;
+}
+
+#gamePlayers > ul{
+    width: 200px;
+    height: 200px;
+    color: black
+    display: flex;
+    columns: 75px 2;
 }
