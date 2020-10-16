@@ -17,7 +17,6 @@ public class GameStateController {
     int playerUpdateCounter = 0;
     @GetMapping("/game")
     public String showTheGame(Principal principal, Model m){
-        System.out.println(CreateGameController.startGame.playerList.get("q").toString());
         m.addAttribute("playerOne", CreateGameController.startGame.playerList.get(principal.getName()) );
         m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values());
         return "game";
