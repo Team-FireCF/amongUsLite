@@ -1,6 +1,6 @@
 
-
 #gameBoard {
+
     width: 1600px;
     height: 900px;
     display: flex;
@@ -135,6 +135,44 @@
     padding: 25px;
     border-radius: 25px;
 }
+
+
+#startBoard {
+     width: 1600px;
+     height: 650px;
+     display: flex;
+     flex-wrap: wrap;
+     border-radius: 25px;
+}
+
+#startSplash {
+    width: 1075px;
+    height: 650;
+    border-radius: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 25px;
+    margin-top: 15px;
+}
+
+#startSplash img {
+    border-radius: 25px;
+    width: 1024px;
+    height: 634px;
+}
+
+#startTimer {
+    width: 500px;
+    height: 650px;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 25px;
+    justify-content: center;
+    align-items: center;
+    background-color: lightslategrey;
+    margin-top: 15px;
 
 #headerGame{
     display: flex;

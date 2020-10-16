@@ -11,6 +11,8 @@ public class HomeController {
     @GetMapping("/")
     public String showHome(Principal principal, Model m){
         m.addAttribute("principal", principal);
+        m.addAttribute("gameState", CreateGameController.startGame);
+
         return "home";
     }
 

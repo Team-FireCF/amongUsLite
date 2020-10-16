@@ -12,15 +12,20 @@ import java.util.ArrayList;
 
 
 import java.security.Principal;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class CreateGameController {
     public static GameState startGame = new GameState();
 
     @GetMapping("/create")
-    public RedirectView createGame(Principal principal){
+    public RedirectView createGame(Principal principal) throws InterruptedException {
+        startGame.setJoinGame(true);
+        startGame.setGameStartedBy(principal.getName());
+        startGame.setGameInProgress(true);
         Location conferenceRoom = new Location("Conference Room");
         startGame.currentLocation.put("Conference Room", conferenceRoom);
         Location lounge = new Location("Lounge");
@@ -187,13 +192,14 @@ public class CreateGameController {
         hall25.adjacentLocations.add(hall3);
         hall25.adjacentLocations.add(hall4);
 
-        return new RedirectView("/");
+        return new RedirectView("/playerJoin");
     }
 
     @GetMapping("/playerJoin")
     public RedirectView playerJoinGame(Principal principal){
         Player newPlayer = new Player(principal.getName(), startGame.currentLocation.get("Conference Room"));
         startGame.currentLocation.get("Conference Room").playersAtCurrentLocation.add(newPlayer);
+
         startGame.playerList.put(principal.getName(), newPlayer);
         startGame.playerList.get(principal.getName()).taskList.add("Conference Room");
         startGame.playerList.get(principal.getName()).taskList.add("Lounge");
@@ -209,7 +215,25 @@ public class CreateGameController {
         Random random = new Random();
         taskArr.remove(getRandomNumberUsingInts(0, (taskArr.size()-1)));
         taskArr.remove(getRandomNumberUsingInts(0, (taskArr.size()-1)));
-        System.out.println(startGame.playerList.get(principal.getName()).taskList.toString());
+        System.out.println("seconds to start: " + startGame.getStartTimer());
+        return new RedirectView("/startGame");
+    }
+
+    @GetMapping("/game/startup")
+    public RedirectView startUp(Principal principal) {
+//        int imp;
+//        int nums = 0;
+//        if(startGame.playerList.values().size() < 7) {
+//            imp = 1;
+//        } else {
+//            imp = 2;
+//        }
+//
+//        Iterator <Player> playerIterator = startGame.playerList.values().iterator();
+//
+//        while(nums < imp) {
+//            playerIterator.next().impostor = true;
+//        }
         return new RedirectView("/game");
     }
 

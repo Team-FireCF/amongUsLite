@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<header>
+    <header>
+        <div id="headerGame">
+            <img src="https://via.placeholder.com/1600x200" alt="">
+
+        </div>
+    </header>
+</header>
+<body>
+    <div id="startBoard">
+        <div id="startSplash">
+            <img src="/Among-Us.jpg" alt="">
+        </div>
+        <div id="startTimer">
+            <param th:value="${startTimer}" id="hiddenVal" name="hiddenVal">
+            <h3 id="timer"></h3>
+            <a href="/game/startup" hidden id="startButton"></a>
+        </div>
+
+    </div>
+    <script src="/startTimer.js"></script>
+</body>
+</html>
