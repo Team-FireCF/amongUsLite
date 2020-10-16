@@ -1,5 +1,14 @@
+*   {
+    box-sizing: border-box;
+}
 
-#gameBoard {
+header {
+    width:1600px;
+    height: 200px;
+
+}
+
+.gameBoard {
 
     width: 1600px;
     height: 900px;
@@ -28,7 +37,7 @@
 #actions {
     display: flex;
     flex-wrap: wrap;
-    width: 299px;
+    width: 167px;
     height: 870px;
     background-color: chartreuse;
     border-radius: 25px;
@@ -189,11 +198,11 @@
     display: flex;
 }
 
-#gameName section{
+/*#gameName section{
     display: flex;
     width: 1400px;
     height: 200px;
-}
+}*/
 
 #gamePlayers{
     width: 200px;
