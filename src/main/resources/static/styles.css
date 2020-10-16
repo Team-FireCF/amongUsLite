@@ -83,3 +83,39 @@
     padding: 25px;
     border-radius: 25px;
 }
+
+#headerGame{
+    display: flex;
+    width: 1600px;
+    height: 200px;
+}
+
+#gameName {
+    width: 1400px;
+    height: 200px;
+    font-size: 36px;
+    color: white;
+    background-color: black;
+    display: flex;
+}
+
+#gameName section{
+    display: flex;
+    width: 1400px;
+    height: 200px;
+}
+
+#gamePlayers{
+    width: 200px;
+    height: 200px;
+    color: black
+    display: flex;
+}
+
+#gamePlayers > ul{
+    width: 200px;
+    height: 200px;
+    color: black
+    display: flex;
+    columns: 75px 2;
+}

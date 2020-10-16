@@ -32,6 +32,12 @@
             <div id="chat">
                 <div th:if="${principal != null}" th:replace="fragments/message :: body"></div>
             </div>
+            <!--   vote start         -->
+            <div id="vote">
+                <div th:replace="fragments/vote :: form"></div>
+            </div>
+            <!--   vote end        -->
+
         </div>
     </div>
 </body>
