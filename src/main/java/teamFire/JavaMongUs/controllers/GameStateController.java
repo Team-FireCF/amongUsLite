@@ -103,11 +103,15 @@ public class GameStateController {
         }
     }
 //
-//    @PostMapping("/game/vote")
-//    public RedirectView countVotes(Principal principal, String location){
-//        playerUpdateCounter++;
-//
-//    }
+    @GetMapping("/game/vote")
+    public RedirectView countVotes(Principal principal, String location, Model m){
+        System.out.println(location);
+        CreateGameController.startGame.setDiscuss(false);
+        m.addAttribute("playerOne", CreateGameController.startGame.playerList.get(principal.getName()) );
+        m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values());
+        m.addAttribute("locationDeets", CreateGameController.startGame.currentLocation);
+        return new RedirectView("/game");
+    }
 
     public RedirectView changeLocation (Principal principal, String location) throws InterruptedException {
         String str = location.substring(1);

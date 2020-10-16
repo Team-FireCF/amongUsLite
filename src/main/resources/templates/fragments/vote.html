@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="UTF-8">
         <title>Title</title>
@@ -8,9 +8,11 @@
         <form action="/game/vote" method="POST">
             <legend>Vote Out the Imposter!</legend>
             <ul id="vote" th:each="player: ${allPlayers}">
-                <li th:style="'font-weight: bold; list-style-type: none;'">
-                    <input type="radio" name="vote" th:if="${player.isDead() == false}" th:text="${player.getUsername()}">
-                </li>
+                <span th:if="${!player.isDead()}">
+                    <li th:style="'font-weight: bold; list-style-type: none;'">
+                    <input type="radio" name="vote" th:text="${player.getUsername()}">
+                    </li>
+                </span>
             </ul>
         </form>
     </body>

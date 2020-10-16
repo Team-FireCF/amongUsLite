@@ -18,6 +18,7 @@ public class GameState {
     public boolean gameInProgress = false;
     public String gameStartedBy;
     int playerUpdateCounter = 0;
+    public ArrayList<String> votes = new ArrayList<>();
 
     public HashMap<String, Player> getPlayerList() {
         return playerList;

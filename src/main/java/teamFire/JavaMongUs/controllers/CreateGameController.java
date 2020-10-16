@@ -216,6 +216,7 @@ public class CreateGameController {
         Random random = new Random();
         taskArr.remove(getRandomNumberUsingInts(0, (taskArr.size()-1)));
         taskArr.remove(getRandomNumberUsingInts(0, (taskArr.size()-1)));
+
         System.out.println("seconds to start: " + startGame.getStartTimer());
 
 //        Player newPlayer2 = new Player("Tom", startGame.currentLocation.get("Conference Room"));
@@ -229,6 +230,7 @@ public class CreateGameController {
 //        startGame.playerList.get("Harry").setDead(true);
 //        startGame.setPlayerUpdateCounter(3);
 //        startGame.currentLocation.get("Conference Room").playersAtCurrentLocation.add(newPlayer3);
+
         return new RedirectView("/startGame");
     }
 
