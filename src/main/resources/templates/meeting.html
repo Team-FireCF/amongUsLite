@@ -28,20 +28,18 @@
 
 
         <div id="infoMessage">
-            <!--   ==== Dead or Alive Starts Below =====-->
-            <div id="deadAlive">
-                <div th:replace="fragments/deadAlive :: ul"></div>
+            <!--   ==== Dead or Alive/Vote Starts Below =====-->
+<!--            <div id="deadAlive">-->
+<!--                <div th:replace="fragments/deadAlive :: ul"></div>-->
+<!--            </div>-->
+            <div id="vote">
+                <div th:replace="fragments/vote :: form"></div>
             </div>
             <!--   ==== Dead or Alive Contents Above =====-->
             <div id="chat">
                 <div th:if="${principal != null}" th:replace="fragments/message :: body"></div>
             </div>
-            <!--   vote start         -->
-            <div id="vote">
-                <div th:replace="fragments/vote :: form"></div>
-            </div>
-            <!--   vote end        -->
-
+            <a href="/game/vote" hidden id="voteButton"></a>
         </div>
     </div>
 </main>
