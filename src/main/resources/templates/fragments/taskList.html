@@ -5,8 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-<div>
-        <h3>Remaining Tasks: </h3>
+<div id="tasks">
+        <h3><text th:text="${'# Of Tasks Left: ' + playerOne.taskList.size()}"></text> Remaining Tasks: </h3>
         <ul  th:each="task : ${playerOne.taskList}">
             <li  th:text="${task}" th:id="${task}" th:value="${task}"></li>
         </ul>

@@ -1,3 +1,5 @@
+
+
 #gameBoard {
     width: 1600px;
     height: 900px;
@@ -23,6 +25,15 @@
     border-radius: 25px;
     margin: 15px;
 }
+#actions {
+    display: flex;
+    flex-wrap: wrap;
+    width: 299px;
+    height: 870px;
+    background-color: chartreuse;
+    border-radius: 25px;
+    margin: 15px;
+}
 
 #infoMessage {
     width: 300px;
@@ -38,23 +49,64 @@
 }
 
 #aroundMe {
-    width: 1240px;
-    height: 100px;
+    width: 340px;
+    height: 206px;
     margin: 15px;
     display: flex;
+    flex-wrap: wrap;
+
     justify-content: center;
     background-color: lightslategrey;
 }
+/*width 1240
+  height 870 */
 
-#map {
-    width: 520px;
-    height: 370px;
+#rightSide {
+    width: 340px;
+    height: 620px;
     margin: 15px;
+    flex-wrap: wrap;
+    display:flex;
+    text-align:center;
+
+}
+#map {
+    width: 835px;
+    height: 620px;
+    margin: 15px;
+    flex-wrap: wrap;
+    display:flex;
+}
+#timer {
+    width:340;
+    height: 50px;
+    font-size:20px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+}
+#currentLocation {
+    width: 340px;
+    height: 106px;
+    margin: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+#tasks {
+    width:1210px;
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: left;
 }
 
 #map img {
-    max-width: 520px;
-    max-height: 370px;
+    max-width: 1200px;
+    max-height: 852px;
     margin: 15px;
     border-radius: 25px;
 }
