@@ -2,7 +2,7 @@
 // Found cool timer tutorial on stackoverflow
 // https://stackoverflow.com/questions/31106189/create-a-simple-10-second-countdown
 
-let timeSpan = 10 // This signifies 15 seconds
+let timeSpan = 30 // This signifies 15 seconds
 
 let timer = setInterval(function() {
     if(timeSpan <= 0) {
