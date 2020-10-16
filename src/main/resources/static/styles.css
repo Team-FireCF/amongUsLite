@@ -66,11 +66,11 @@ header {
 
 #aroundMe {
     width: 340px;
-    height: 206px;
-    margin: 15px;
+    height: 290px;
+    margin: 0px 15px 0px;
     display: flex;
     flex-wrap: wrap;
-
+    overflow:hidden;
     justify-content: center;
     background-color: lightslategrey;
 }
@@ -104,8 +104,8 @@ header {
 }
 #currentLocation {
     width: 340px;
-    height: 106px;
-    margin: 15px;
+    height: 295px;
+    margin: 0px 15px 0px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
