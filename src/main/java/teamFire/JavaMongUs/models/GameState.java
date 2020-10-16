@@ -13,7 +13,7 @@ public class GameState {
     public HashMap<String, Player> playerList = new HashMap<>();
     public HashMap<String, Location> currentLocation = new HashMap<>();
     public Boolean discuss = false;
-    public long startTimer = 0;
+    public int startTimer = 0;
     public boolean joinGame = false;
     public boolean gameInProgress = false;
     public String gameStartedBy;
@@ -46,7 +46,7 @@ public class GameState {
         return startTimer;
     }
 
-    public void setStartTimer(long startTimer) {
+    public void setStartTimer(int startTimer) {
         this.startTimer = startTimer;
     }
 

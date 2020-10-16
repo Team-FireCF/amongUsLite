@@ -201,8 +201,6 @@ public class CreateGameController {
         startGame.currentLocation.get("Conference Room").playersAtCurrentLocation.add(newPlayer);
 
         startGame.playerList.put(principal.getName(), newPlayer);
-        System.out.println(newPlayer.getPlayerLocation().toString());
-        System.out.println("playerjoined: " + principal.getName() + startGame.playerList.size());
         startGame.playerList.get(principal.getName()).taskList.add("Conference Room");
         startGame.playerList.get(principal.getName()).taskList.add("Lounge");
         startGame.playerList.get(principal.getName()).taskList.add("Zoom Room");
@@ -217,7 +215,7 @@ public class CreateGameController {
         Random random = new Random();
         taskArr.remove(getRandomNumberUsingInts(0, (taskArr.size()-1)));
         taskArr.remove(getRandomNumberUsingInts(0, (taskArr.size()-1)));
-        System.out.println(startGame.playerList.get(principal.getName()).taskList.toString());
+        System.out.println("seconds to start: " + startGame.getStartTimer());
         return new RedirectView("/startGame");
     }
 
@@ -230,7 +228,7 @@ public class CreateGameController {
         } else {
             imp = 2;
         }
-        System.out.println(startGame.playerList.size());
+
         Iterator <Player> playerIterator = startGame.playerList.values().iterator();
 
         while(nums < imp) {

@@ -25,14 +25,23 @@ public class GameStateController {
 
     @GetMapping("/startGame")
     public String startGame(Principal principal, Model m) throws InterruptedException {
-        System.out.println(principal.getName());
-        System.out.println(CreateGameController.startGame.getGameStartedBy());
         if(principal.getName().equals(CreateGameController.startGame.gameStartedBy)) {
-            startTimer();
+            new Thread(() -> {
+                try {
+                    startTimer();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+            m.addAttribute("playerOne", CreateGameController.startGame.playerList.get(principal.getName()) );
+            m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values() );
+            m.addAttribute("startTimer", CreateGameController.startGame.startTimer);
+            return "start";
         }
         m.addAttribute("playerOne", CreateGameController.startGame.playerList.get(principal.getName()) );
         m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values() );
         m.addAttribute("startTimer", CreateGameController.startGame.startTimer);
+
         return "start";
     }
 
@@ -157,7 +166,7 @@ public class GameStateController {
             }
             if(secondspassed < 60)   {
                 CreateGameController.startGame.startTimer++;
-                System.out.println(CreateGameController.startGame.startTimer);
+//                System.out.println(CreateGameController.startGame.startTimer);
             }
 
 

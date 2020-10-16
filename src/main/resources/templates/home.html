@@ -29,7 +29,7 @@
     <section th:if="${principal != null and !gameState.gameInProgress}">
         <a href="/create">Create New Game</a>
     </section>
-    <h4 th:if="${principle != null and !gameState.joinGame and gameState.gameInProgress}" th:text="${gameState.gameStartedBy has a game in progress! Please wait...}"></h4>
+    <h4 th:if="${principle != null and !gameState.joinGame and gameState.gameInProgress}" th:text="${gameState.gameStartedBy} + has a game in progress! Please wait...}"></h4>
     <br>
     <br>
     <section th:if="${principal != null and gameState.joinGame}">

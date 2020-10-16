@@ -1,7 +1,7 @@
 let timeSpan = document.getElementById("hiddenVal").attributes[0].value;
-let timeLeft = 8 - parseInt(timeSpan);
+let timeLeft = 60 - timeSpan
+console.log(timeSpan);
 
-console.log(timeSpan, timeLeft)
 let timer = setInterval(function() {
     if(timeLeft <= 0) {
         clearInterval(timer);
