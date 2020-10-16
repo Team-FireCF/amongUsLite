@@ -21,6 +21,7 @@ public class GameStateController {
         m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values());
         m.addAttribute("locationDeets", CreateGameController.startGame.currentLocation);
         m.addAttribute("taskNum",CreateGameController.startGame);
+
         return "game";
     }
 
@@ -68,11 +69,16 @@ public class GameStateController {
         return "home";
     }
 
+    @PostMapping("/killUpdate")
+    public RedirectView killMFers(Principal principal, String kill, Model m) throws InterruptedException {
+        CreateGameController.startGame.setPlayerUpdateCounter(CreateGameController.startGame.getPlayerUpdateCounter()+1);
+        return kill(principal, kill);
+    }
+
     @PostMapping("/gameUpdate")
     public RedirectView updateGameState(Principal principal, String location) throws InterruptedException {
         CreateGameController.startGame.setPlayerUpdateCounter(CreateGameController.startGame.getPlayerUpdateCounter()+1);
-        System.out.println("PLAYER COUNTER" + CreateGameController.startGame.getPlayerUpdateCounter());
-        System.out.println("string in " + location);
+
         if(location == null){
             changeLocation(principal, "stayHere");
         }
@@ -81,22 +87,18 @@ public class GameStateController {
         String bol = String.format("%c", sym);
         switch (bol){
             case "!":
-                Thread.sleep(25);
-                System.out.println("move");
                 return changeLocation(principal, location);
 
             case "#":
                 return report(principal, location);
 
             case "&":
-                Thread.sleep(25);
                 return task(principal, location);
 
             case  "$":
                 return meeting(principal, location);
 
             case "@":
-                Thread.sleep(25);
                 return kill(principal, location);
 
             default:
@@ -131,8 +133,6 @@ public class GameStateController {
 //        add iff statement to check if all tasks are done.  hardcode to 20 and if playerlist.size =2
 //        or if numTasks = 20
 
-        Thread.sleep(2000);
-
         if(CreateGameController.startGame.discuss){
 
             return new RedirectView("/meeting");
@@ -145,7 +145,7 @@ public class GameStateController {
         Location getLocation = CreateGameController.startGame.currentLocation.get(str);
         getLocation.deadBody = false;
         CreateGameController.startGame.setDiscuss(true);
-        while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
+        while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(20); }
 
 //        add iff statement to check if all tasks are done.  hardcode to 20
 
@@ -167,8 +167,11 @@ public class GameStateController {
                 getPlayer.taskList.remove(i);
             }
         }
-        while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
+
 //        add iff statement to check if all tasks are done.  hardcode to 20
+
+        while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(20); }
+
 
         if(CreateGameController.startGame.discuss){
             return new RedirectView("/meeting");
@@ -177,12 +180,13 @@ public class GameStateController {
         }
     }
 
-    public RedirectView kill (Principal principal, String location){
+    public RedirectView kill (Principal principal, String kill) throws InterruptedException {
 
-//        String str = location.substring(1);
-//        Location getLocation = CreateGameController.startGame.currentLocation.get(str);
-//        Player getPlayer = CreateGameController.startGame.playerList.get(getLocation.playersAtCurrentLocation.);
+        Player getVictim = CreateGameController.startGame.playerList.get(kill);
+        Location getLocation = CreateGameController.startGame.currentLocation.get(getVictim.playerLocation.locationName);
 
+        getVictim.setDead(true);
+        while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(20); }
 
         if(CreateGameController.startGame.discuss){
             return new RedirectView("/meeting");
@@ -194,8 +198,11 @@ public class GameStateController {
     public RedirectView meeting(Principal principal, String location) throws InterruptedException {
         String str = location.substring(1);
         CreateGameController.startGame.discuss = true;
-        while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
+
 //        add iff statement to check if all tasks are done.  hardcode to 20
+
+        while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(20); }
+
 
 
         if(CreateGameController.startGame.discuss){
