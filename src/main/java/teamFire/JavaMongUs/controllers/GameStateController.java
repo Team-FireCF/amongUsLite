@@ -117,6 +117,12 @@ public class GameStateController {
         m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values());
         m.addAttribute("locationDeets", CreateGameController.startGame.currentLocation);
 //        add iff statement to check if all tasks are done.  hardcode to 20
+        if(CreateGameController.startGame.getTaskNum() == 21 || CreateGameController.startGame.getImpostorSize()== 0){
+            return new RedirectView("/win");
+        }
+        if(CreateGameController.startGame.playerList.size() == 2){
+            return new RedirectView("/impostorWin");
+        }
         return new RedirectView("/game");
     }
 
@@ -135,6 +141,12 @@ public class GameStateController {
         while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(20); }
 //        add iff statement to check if all tasks are done.  hardcode to 20 and if playerlist.size =2
 //        or if numTasks = 20
+        if(CreateGameController.startGame.getTaskNum() == 21 || CreateGameController.startGame.getImpostorSize()== 0){
+            return new RedirectView("/win");
+        }
+        if(CreateGameController.startGame.playerList.size() == 2){
+            return new RedirectView("/impostorWin");
+        }
 
         if(CreateGameController.startGame.discuss){
 
@@ -151,8 +163,12 @@ public class GameStateController {
         while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(20); }
 
 //        add iff statement to check if all tasks are done.  hardcode to 20
-
-
+            if(CreateGameController.startGame.getTaskNum() == 21 || CreateGameController.startGame.getImpostorSize()== 0){
+                return new RedirectView("/win");
+            }
+            if(CreateGameController.startGame.playerList.size() == 2){
+                return new RedirectView("/impostorWin");
+            }
         if(CreateGameController.startGame.discuss){
             return new RedirectView("/meeting");
         } else {
@@ -171,10 +187,15 @@ public class GameStateController {
             }
         }
 
-//        add iff statement to check if all tasks are done.  hardcode to 20
 
         while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(20); }
-
+//        add iff statement to check if all tasks are done.  hardcode to 20
+        if(CreateGameController.startGame.getTaskNum() == 21 || CreateGameController.startGame.getImpostorSize()== 0){
+            return new RedirectView("/win");
+        }
+        if(CreateGameController.startGame.playerList.size() == 2){
+            return new RedirectView("/impostorWin");
+        }
 
         if(CreateGameController.startGame.discuss){
             return new RedirectView("/meeting");
@@ -187,6 +208,7 @@ public class GameStateController {
         System.out.println(kill);
         Player getVictim = CreateGameController.startGame.playerList.get(kill);
         getVictim.setDead(true);
+   
         while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(20); }
 
         if(CreateGameController.startGame.discuss){
@@ -204,7 +226,12 @@ public class GameStateController {
 
         while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(20); }
 
-
+        if(CreateGameController.startGame.getTaskNum() == 21 || CreateGameController.startGame.getImpostorSize()== 0){
+            return new RedirectView("/win");
+        }
+        if(CreateGameController.startGame.playerList.size() == 2){
+            return new RedirectView("/impostorWin");
+        }
 
         if(CreateGameController.startGame.discuss){
             return new RedirectView("/meeting");
