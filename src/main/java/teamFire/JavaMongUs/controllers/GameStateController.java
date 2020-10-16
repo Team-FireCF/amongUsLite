@@ -65,6 +65,7 @@ public class GameStateController {
         CreateGameController.startGame.setGameStartedBy("");
         CreateGameController.startGame.currentLocation.clear();
         CreateGameController.startGame.playerList.clear();
+        CreateGameController.startGame.setImpostorSize(1);
 
         return "home";
     }

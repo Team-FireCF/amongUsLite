@@ -20,7 +20,7 @@ public class GameState {
     int playerUpdateCounter = 0;
     public ArrayList<String> votes = new ArrayList<>();
     int taskNum = 0;
-    int impostorSize = 2;
+    int impostorSize = 1;
 
     public HashMap<String, Player> getPlayerList() {
         return playerList;
@@ -101,6 +101,7 @@ public class GameState {
     public void setImpostorSize(int impostorSize) {
         this.impostorSize = impostorSize;
     }
+
 
     @Override
     public String toString() {
