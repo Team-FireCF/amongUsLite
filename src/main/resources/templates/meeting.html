@@ -17,11 +17,12 @@
     </div>
 </header>
 <body>
-    <div id="meetingBoard">
+    <div class="gameBoard">
         <div id="meetingMap">
             <img src="/JavaMongUs_map.png" alt="">
+            <div th:if="${principal}" th:replace="fragments/timer.html :: #timer"></div>
         </div>
-        <div th:if="${principal}" th:replace="fragments/timer.html :: #timer"></div>
+
 
         <div id="infoMessage">
             <!--   ==== Dead or Alive Starts Below =====-->

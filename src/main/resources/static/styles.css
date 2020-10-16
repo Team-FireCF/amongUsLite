@@ -1,5 +1,12 @@
-*   {
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
+  /*border-style: dotted;
+  border-width: 1px;
+  border-color: red;*/
+}
+
+#placesToGo {
+    height: 15%;
 }
 
 header {
