@@ -183,8 +183,7 @@ header {
     background-color: lightslategrey;
     margin-top: 15px;
 
-#headerGame{
-    display: flex;
+header{
     width: 1600px;
     height: 200px;
 }
@@ -197,12 +196,6 @@ header {
     background-color: black;
     display: flex;
 }
-
-/*#gameName section{
-    display: flex;
-    width: 1400px;
-    height: 200px;
-}*/
 
 #gamePlayers{
     width: 200px;
