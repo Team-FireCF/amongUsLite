@@ -1,5 +1,5 @@
 let timeSpan = document.getElementById("hiddenVal").attributes[0].value;
-let timeLeft = 60 - timeSpan
+let timeLeft = 8 - timeSpan
 console.log(timeSpan);
 
 let timer = setInterval(function() {

@@ -221,19 +221,19 @@ public class CreateGameController {
 
     @GetMapping("/game/startup")
     public RedirectView startUp(Principal principal) {
-        int imp;
-        int nums = 0;
-        if(startGame.playerList.values().size() < 7) {
-            imp = 1;
-        } else {
-            imp = 2;
-        }
-
-        Iterator <Player> playerIterator = startGame.playerList.values().iterator();
-
-        while(nums < imp) {
-            playerIterator.next().impostor = true;
-        }
+//        int imp;
+//        int nums = 0;
+//        if(startGame.playerList.values().size() < 7) {
+//            imp = 1;
+//        } else {
+//            imp = 2;
+//        }
+//
+//        Iterator <Player> playerIterator = startGame.playerList.values().iterator();
+//
+//        while(nums < imp) {
+//            playerIterator.next().impostor = true;
+//        }
         return new RedirectView("/game");
     }
 

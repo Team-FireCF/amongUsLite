@@ -158,13 +158,13 @@ public class GameStateController {
             TimeUnit.SECONDS.sleep(1);
             long timepassed=System.currentTimeMillis()-startTime;
             long secondspassed=timepassed/1000;
-            if(secondspassed==60) {
+            if(secondspassed==8) {
                 CreateGameController.startGame.startTimer = -1;
                 x = false;
                 CreateGameController.startGame.joinGame = false;
 
             }
-            if(secondspassed < 60)   {
+            if(secondspassed < 8)   {
                 CreateGameController.startGame.startTimer++;
 //                System.out.println(CreateGameController.startGame.startTimer);
             }
