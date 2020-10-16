@@ -33,13 +33,23 @@
 <!--                <div th:replace="fragments/deadAlive :: ul"></div>-->
 <!--            </div>-->
             <div id="vote">
-                <div th:replace="fragments/vote :: form"></div>
+                <form action="/game/vote" method="post" id="voteButton">
+                    <legend>Vote Out the Imposter!</legend>
+                    <ul th:each="player: ${allPlayers}">
+                <span th:if="${!player.isDead()}">
+                    <li th:style="'font-weight: bold; list-style-type: none;'">
+                    <input type="radio" name="vote" th:text="${player.username}" th:value="${player.username}">
+
+
+                    </li>
+                </span>
+                    </ul>
+                </form>
             </div>
             <!--   ==== Dead or Alive Contents Above =====-->
             <div id="chat">
                 <div th:if="${principal != null}" th:replace="fragments/message :: body"></div>
             </div>
-            <a href="/game/vote" hidden id="voteButton"></a>
         </div>
     </div>
 </main>
