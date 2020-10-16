@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header class="header">
+    <div >
+        <div id="gameName"><section>JavaMongUs</section></div>
+        <div id="gamePlayers"><ul><li th:replace="fragments/gamePlayers :: li"></li></ul></div>
+    </div>
+</header>
+<main>
+    <div th:replace="fragments/logout :: a"></div>
+    <div th:replace="fragments/homeButton :: a"></div>
+    <h1>Impostors Win!!!</h1>
+    <div>
+        <img src="/among-us-victory.jpg" alt="Victory!" style="width:1000px; height:575px">
+    </div>
+</main>
+</body>
+</html>
