@@ -27,7 +27,7 @@ public class GameStateController {
     @GetMapping("/startGame")
     public String startGame(Principal principal, Model m) throws InterruptedException {
         if(principal.getName().equals(CreateGameController.startGame.gameStartedBy)) {
-            CreateGameController.startGame.playerList.get(principal.getName()).setImpostor(true);
+
             new Thread(() -> {
                 try {
                     startTimer();
@@ -70,12 +70,13 @@ public class GameStateController {
 
     @PostMapping("/killUpdate")
     public RedirectView killMFers(Principal principal, String kill, Model m) throws InterruptedException {
-        CreateGameController.startGame.setPlayerUpdateCounter(CreateGameController.startGame.getPlayerUpdateCounter()+1);
+
         return kill(principal, kill);
     }
 
     @PostMapping("/gameUpdate")
     public RedirectView updateGameState(Principal principal, String location) throws InterruptedException {
+        System.out.println("adfg");
         CreateGameController.startGame.setPlayerUpdateCounter(CreateGameController.startGame.getPlayerUpdateCounter()+1);
 
         if(location == null){
@@ -104,11 +105,13 @@ public class GameStateController {
                 return new RedirectView("/game");
         }
     }
-//
-    @GetMapping("/game/vote")
-    public RedirectView countVotes(Principal principal, String location, Model m){
-        System.out.println(location);
+
+    @PostMapping("/game/vote")
+    public RedirectView countVotes(Principal principal, String vote, Model m){
+        System.out.println(vote);
         CreateGameController.startGame.setDiscuss(false);
+
+        CreateGameController.startGame.playerList.get(vote).setDead(true);
         m.addAttribute("playerOne", CreateGameController.startGame.playerList.get(principal.getName()) );
         m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values());
         m.addAttribute("locationDeets", CreateGameController.startGame.currentLocation);
@@ -170,10 +173,8 @@ public class GameStateController {
     }
 
     public RedirectView kill (Principal principal, String kill) throws InterruptedException {
-
+        System.out.println(kill);
         Player getVictim = CreateGameController.startGame.playerList.get(kill);
-        Location getLocation = CreateGameController.startGame.currentLocation.get(getVictim.playerLocation.locationName);
-
         getVictim.setDead(true);
         while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(20); }
 

@@ -222,7 +222,7 @@ public class CreateGameController {
         Player newPlayer2 = new Player("Tom", startGame.currentLocation.get("Conference Room"));
         Player newPlayer3 = new Player("Dick", startGame.currentLocation.get("Conference Room"));
         Player newPlayer4 = new Player("Harry", startGame.currentLocation.get("Conference Room"));
-//
+
         startGame.playerList.put("Tom", newPlayer2);
         startGame.playerList.put("Dick", newPlayer3);
         startGame.playerList.put("Harry", newPlayer4);

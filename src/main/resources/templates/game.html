@@ -10,8 +10,8 @@
 <body>
 <header class="header">
     <div >
-        <div id="gameName"><section>JavaMongUs</section></div>
-        <div id="gamePlayers"><ul><li th:replace="fragments/gamePlayers :: li"></li></ul></div>
+        <div id="gameName">JavaMongUs</div>
+        <div ><ul><li id="gamePlayers" th:replace="fragments/gamePlayers :: li"></li></ul></div>
     </div>
 </header>
 <main>
@@ -30,7 +30,7 @@
 
                     <div id="currentLocation">
                         <h2 style="width:100%;">Where am I?</h2>
-                        <h3 style="'width:100%;'" th:text="${playerOne.playerLocation.locationName}"></h3>
+<!--                        <h3 style="'width:100%;'" th:text="${playerOne.playerLocation.locationName}"></h3>-->
 
                     </div>
                     <div id="aroundMe">
@@ -51,7 +51,7 @@
                       <h3>Places You Can Go</h3>
 
                       <span th:each="location : ${playerOne.playerLocation.adjacentLocations}">
-                            <input type="radio"  th:id="${location.getName()}" name="location" th:value="'!' + ${location.getName()}">
+                          <input type="radio"  th:id="${location.getName()}" name="location" th:value="'!' + ${location.getName()}">
                             <label th:for="${location.getName()}" th:text ="${location.getName()}"></label><br>
                         </span>
                         <input type="radio" th:id="${playerOne.playerLocation.locationName}" name="location"  th:value="'!' + ${playerOne.playerLocation.locationName}" checked>

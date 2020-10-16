@@ -8,7 +8,8 @@ let timer = setInterval(function() {
     if(timeSpan <= 0) {
         clearInterval(timer);
         document.getElementById("timer").innerHTML = "Finished";
-        document.getElementById("voteButton").click();
+
+        document.getElementById("voteButton").submit();
 
     } else {
         document.getElementById("timer").innerHTML = timeSpan + " s";
