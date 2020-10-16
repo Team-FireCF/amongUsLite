@@ -168,9 +168,9 @@ public class GameStateController {
 
     public RedirectView kill (Principal principal, String location){
 
-        String str = location.substring(1);
-        Location getLocation = CreateGameController.startGame.currentLocation.get(str);
-        Player getPlayer = CreateGameController.startGame.playerList.get(getLocation.playersAtCurrentLocation.);
+//        String str = location.substring(1);
+//        Location getLocation = CreateGameController.startGame.currentLocation.get(str);
+//        Player getPlayer = CreateGameController.startGame.playerList.get(getLocation.playersAtCurrentLocation.);
 
 
         if(CreateGameController.startGame.discuss){
