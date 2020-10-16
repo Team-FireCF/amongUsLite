@@ -21,6 +21,7 @@ public class GameState {
     public ArrayList<String> votes = new ArrayList<>();
     int taskNum = 0;
     int impostorSize = 1;
+    int maxTask = 0;
 
     public HashMap<String, Player> getPlayerList() {
         return playerList;
@@ -102,6 +103,13 @@ public class GameState {
         this.impostorSize = impostorSize;
     }
 
+    public int getMaxTask() {
+        return maxTask;
+    }
+
+    public void setMaxTask(int maxTask) {
+        this.maxTask = maxTask;
+    }
 
     @Override
     public String toString() {

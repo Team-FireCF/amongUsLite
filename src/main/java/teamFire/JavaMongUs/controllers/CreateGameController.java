@@ -217,11 +217,12 @@ public class CreateGameController {
         taskArr.remove(getRandomNumberUsingInts(0, (taskArr.size()-1)));
         taskArr.remove(getRandomNumberUsingInts(0, (taskArr.size()-1)));
 
-        System.out.println("seconds to start: " + startGame.getStartTimer());
+        maxTasks();
+
 
         Player newPlayer2 = new Player("Tom", startGame.currentLocation.get("Conference Room"));
-        Player newPlayer3 = new Player("Dick", startGame.currentLocation.get("Conference Room"));
-        Player newPlayer4 = new Player("Harry", startGame.currentLocation.get("Conference Room"));
+        Player newPlayer3 = new Player("Dick", startGame.currentLocation.get("Oxygen Room"));
+        Player newPlayer4 = new Player("Harry", startGame.currentLocation.get("Computer Room"));
 
         startGame.playerList.put("Tom", newPlayer2);
         startGame.playerList.put("Dick", newPlayer3);
@@ -229,10 +230,9 @@ public class CreateGameController {
         startGame.playerList.get("Tom").setDead(true);
         startGame.playerList.get("Harry").setDead(true);
         startGame.setPlayerUpdateCounter(3);
-        startGame.currentLocation.get("Conference Room").playersAtCurrentLocation.add(newPlayer3);
-
+        startGame.currentLocation.get("Oxygen Room").playersAtCurrentLocation.add(newPlayer3);
         startGame.currentLocation.get("Conference Room").playersAtCurrentLocation.add(newPlayer2);
-        startGame.currentLocation.get("Conference Room").playersAtCurrentLocation.add(newPlayer4);
+        startGame.currentLocation.get("Computer Room").playersAtCurrentLocation.add(newPlayer4);
 
 
         return new RedirectView("/startGame");
@@ -262,6 +262,11 @@ public class CreateGameController {
         return random.ints(min, max)
                 .findFirst()
                 .getAsInt();
+    }
+
+    private void maxTasks() {
+        int val = startGame.playerList.size() * 7;
+        startGame.setMaxTask(val);
     }
 
 

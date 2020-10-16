@@ -67,6 +67,7 @@ public class GameStateController {
         CreateGameController.startGame.playerList.clear();
         CreateGameController.startGame.setImpostorSize(1);
         CreateGameController.startGame.setTaskNum(0);
+        CreateGameController.startGame.setMaxTask(0);
 
         return "home";
     }
@@ -84,7 +85,6 @@ public class GameStateController {
 
     @PostMapping("/gameUpdate")
     public RedirectView updateGameState(Principal principal, String location) throws InterruptedException {
-        System.out.println("adfg");
         CreateGameController.startGame.setPlayerUpdateCounter(CreateGameController.startGame.getPlayerUpdateCounter()+1);
 
         if(location == null){
@@ -116,15 +116,14 @@ public class GameStateController {
 
     @PostMapping("/game/vote")
     public RedirectView countVotes(Principal principal, String vote, Model m){
-        System.out.println(vote);
-        CreateGameController.startGame.setDiscuss(false);
 
+        CreateGameController.startGame.setDiscuss(false);
         CreateGameController.startGame.playerList.get(vote).setDead(true);
         CreateGameController.startGame.setImpostorSize(0);
         m.addAttribute("playerOne", CreateGameController.startGame.playerList.get(principal.getName()) );
         m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values());
         m.addAttribute("locationDeets", CreateGameController.startGame.currentLocation);
-//        add iff statement to check if all tasks are done.  hardcode to 20
+
         if(CreateGameController.startGame.getTaskNum() == 21 || CreateGameController.startGame.getImpostorSize()== 0){
             return new RedirectView("/win");
         }
@@ -136,7 +135,7 @@ public class GameStateController {
 
     public RedirectView changeLocation (Principal principal, String location) throws InterruptedException {
         String str = location.substring(1);
-        System.out.println();
+
         if(!str.equals("stayHere")){
 
             Player getPlayer = CreateGameController.startGame.playerList.get(principal.getName());
@@ -147,9 +146,8 @@ public class GameStateController {
         }
 
         while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(20); }
-//        add iff statement to check if all tasks are done.  hardcode to 20 and if playerlist.size =2
-//        or if numTasks = 20
-        if(CreateGameController.startGame.getTaskNum() == 21 || CreateGameController.startGame.getImpostorSize()== 0){
+
+        if(CreateGameController.startGame.getTaskNum() == CreateGameController.startGame.getMaxTask() || CreateGameController.startGame.getImpostorSize()== 0){
             return new RedirectView("/win");
         }
         if(CreateGameController.startGame.playerList.size() == 2){
@@ -163,20 +161,21 @@ public class GameStateController {
             return new RedirectView("/game");
         }
     }
-        public RedirectView report (Principal principal, String location) throws InterruptedException {
+    public RedirectView report (Principal principal, String location) throws InterruptedException {
         String str = location.substring(1);
         Location getLocation = CreateGameController.startGame.currentLocation.get(str);
         getLocation.deadBody = false;
         CreateGameController.startGame.setDiscuss(true);
         while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(20); }
 
-//        add iff statement to check if all tasks are done.  hardcode to 20
-            if(CreateGameController.startGame.getTaskNum() == 21 || CreateGameController.startGame.getImpostorSize()== 0){
-                return new RedirectView("/win");
-            }
-            if(CreateGameController.startGame.playerList.size() == 2){
-                return new RedirectView("/impostorWin");
-            }
+//        add if statement to check if all tasks are done.  hardcode to 20
+        if(CreateGameController.startGame.getTaskNum() == CreateGameController.startGame.getMaxTask() || CreateGameController.startGame.getImpostorSize()== 0){
+            return new RedirectView("/win");
+        }
+        if(CreateGameController.startGame.playerList.size() == 2){
+            return new RedirectView("/impostorWin");
+        }
+
         if(CreateGameController.startGame.discuss){
             return new RedirectView("/meeting");
         } else {
@@ -197,8 +196,8 @@ public class GameStateController {
 
 
         while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(20); }
-//        add iff statement to check if all tasks are done.  hardcode to 20
-        if(CreateGameController.startGame.getTaskNum() == 21 || CreateGameController.startGame.getImpostorSize()== 0){
+
+        if(CreateGameController.startGame.getTaskNum() == CreateGameController.startGame.getMaxTask() || CreateGameController.startGame.getImpostorSize()== 0){
             return new RedirectView("/win");
         }
         if(CreateGameController.startGame.playerList.size() == 2){
@@ -213,9 +212,8 @@ public class GameStateController {
     }
 
     public RedirectView kill (Principal principal, String kill) throws InterruptedException {
-        System.out.println(kill);
-//        Player getVictim = CreateGameController.startGame.playerList.get(kill);
-//        getVictim.setDead(true);
+
+
    
         while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(20); }
 
@@ -234,7 +232,7 @@ public class GameStateController {
 
         while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(20); }
 
-        if(CreateGameController.startGame.getTaskNum() == 21 || CreateGameController.startGame.getImpostorSize()== 0){
+        if(CreateGameController.startGame.getTaskNum() == CreateGameController.startGame.getMaxTask() || CreateGameController.startGame.getImpostorSize()== 0){
             return new RedirectView("/win");
         }
         if(CreateGameController.startGame.playerList.size() == 2){

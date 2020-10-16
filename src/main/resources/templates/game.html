@@ -24,7 +24,7 @@
             <div id="actionPlace">
                 <div id="progressBar">
                     <label for="progressBar">CrewMate Progress</label>
-                    <progress th:value="${taskNum.getTaskNum()}" max="21"></progress>
+                    <progress th:value="${taskNum.getTaskNum()}" th:max="${taskNum.getMaxTask()}"></progress>
                 </div>
                 <div id="map">
                     <img src="/JavaMongUs_map.png" alt="">
