@@ -19,6 +19,7 @@ public class GameState {
     public String gameStartedBy;
     int playerUpdateCounter = 0;
     public ArrayList<String> votes = new ArrayList<>();
+    int taskNum = 0;
 
     public HashMap<String, Player> getPlayerList() {
         return playerList;
@@ -82,6 +83,14 @@ public class GameState {
 
     public int getPlayerUpdateCounter() {
         return playerUpdateCounter;
+    }
+
+    public int getTaskNum() {
+        return taskNum;
+    }
+
+    public void setTaskNum(int taskNum) {
+        this.taskNum = taskNum;
     }
 
     @Override

@@ -13,6 +13,8 @@ public class Player {
     public Location playerLocation;
     public ArrayList<String> taskList = new ArrayList<>();
     public ArrayList<String> voteList = new ArrayList<>();
+    public int numTask =7;
+    public int taskDelay = 0;
     //ToDo: Add tasks
 
 
@@ -53,6 +55,13 @@ public class Player {
         this.playerLocation = playerLocation;
     }
 
+    public int getNumTask() {
+        return numTask;
+    }
+
+    public void setNumTask(int numTask) {
+        this.numTask = numTask;
+    }
 
     @Override
     public String toString() {
