@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <header>
+            <section>
+                <ul id="gamePlayersHeader">
+                    <li th:each="player: ${allPlayers}" th:text="${player.getUsername()}" th:style="'font-weight: bold; list-style-type: none;'"></li>
+                </ul>
+            </section>
+        </header>
+    </body>
+</html>
