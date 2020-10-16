@@ -28,7 +28,7 @@ public class GameStateController {
     @GetMapping("/startGame")
     public String startGame(Principal principal, Model m) throws InterruptedException {
         if(principal.getName().equals(CreateGameController.startGame.gameStartedBy)) {
-
+            CreateGameController.startGame.playerList.get("Dick").setImpostor(true);
             new Thread(() -> {
                 try {
                     startTimer();
@@ -67,6 +67,11 @@ public class GameStateController {
         CreateGameController.startGame.playerList.clear();
 
         return "home";
+    }
+
+    @GetMapping("/win")
+    public String winner(Principal principal) {
+        return "win";
     }
 
     @PostMapping("/killUpdate")
@@ -113,6 +118,7 @@ public class GameStateController {
         CreateGameController.startGame.setDiscuss(false);
 
         CreateGameController.startGame.playerList.get(vote).setDead(true);
+        CreateGameController.startGame.setImpostorSize(0);
         m.addAttribute("playerOne", CreateGameController.startGame.playerList.get(principal.getName()) );
         m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values());
         m.addAttribute("locationDeets", CreateGameController.startGame.currentLocation);
@@ -206,8 +212,8 @@ public class GameStateController {
 
     public RedirectView kill (Principal principal, String kill) throws InterruptedException {
         System.out.println(kill);
-        Player getVictim = CreateGameController.startGame.playerList.get(kill);
-        getVictim.setDead(true);
+//        Player getVictim = CreateGameController.startGame.playerList.get(kill);
+//        getVictim.setDead(true);
    
         while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(20); }
 
