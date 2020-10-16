@@ -66,6 +66,7 @@ public class GameStateController {
         CreateGameController.startGame.currentLocation.clear();
         CreateGameController.startGame.playerList.clear();
         CreateGameController.startGame.setImpostorSize(1);
+        CreateGameController.startGame.setTaskNum(0);
 
         return "home";
     }
