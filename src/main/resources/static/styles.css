@@ -215,6 +215,7 @@ body {
     color: white;
     background-color: black;
     display: flex;
+    float: right;
 }
 
 #gamePlayers{
@@ -223,6 +224,7 @@ body {
     color: black
     display: flex;
     font-size: 15px;
+    float: right;
 }
 
 #gamePlayers{
