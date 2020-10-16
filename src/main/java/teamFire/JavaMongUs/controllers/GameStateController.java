@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 @Controller
 public class GameStateController {
-    int playerUpdateCounter = 0;
+
     @GetMapping("/game")
     public String showTheGame(Principal principal, Model m){
         m.addAttribute("playerOne", CreateGameController.startGame.playerList.get(principal.getName()) );
@@ -69,8 +69,9 @@ public class GameStateController {
 
     @PostMapping("/gameUpdate")
     public RedirectView updateGameState(Principal principal, String location) throws InterruptedException {
-        playerUpdateCounter++;
-        System.out.println(playerUpdateCounter);
+        CreateGameController.startGame.setPlayerUpdateCounter(CreateGameController.startGame.getPlayerUpdateCounter()+1);
+        System.out.println("PLAYER COUNTER" + CreateGameController.startGame.getPlayerUpdateCounter());
+        System.out.println("string in " + location);
         if(location == null){
             changeLocation(principal, "stayHere");
         }
@@ -79,6 +80,7 @@ public class GameStateController {
         String bol = String.format("%c", sym);
         switch (bol){
             case "!":
+                Thread.sleep(25);
                 System.out.println("move");
                 return changeLocation(principal, location);
 
@@ -86,12 +88,14 @@ public class GameStateController {
                 return report(principal, location);
 
             case "&":
+                Thread.sleep(25);
                 return task(principal, location);
 
             case  "$":
                 return meeting(principal, location);
 
             case "@":
+                Thread.sleep(25);
                 return kill(principal, location);
 
             default:
@@ -107,7 +111,7 @@ public class GameStateController {
 
     public RedirectView changeLocation (Principal principal, String location) throws InterruptedException {
         String str = location.substring(1);
-
+        System.out.println();
         if(!str.equals("stayHere")){
 
             Player getPlayer = CreateGameController.startGame.playerList.get(principal.getName());
@@ -117,8 +121,10 @@ public class GameStateController {
             getPlayer.setPlayerLocation(getLocation);
         }
 
-        while(playerUpdateCounter < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
-        playerUpdateCounter = 0;
+        while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(20); }
+
+        Thread.sleep(2000);
+
         if(CreateGameController.startGame.discuss){
 
             return new RedirectView("/meeting");
@@ -131,8 +137,10 @@ public class GameStateController {
         Location getLocation = CreateGameController.startGame.currentLocation.get(str);
         getLocation.deadBody = false;
         CreateGameController.startGame.setDiscuss(true);
-        while(playerUpdateCounter < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
-        playerUpdateCounter = 0;
+        while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
+
+
+
         if(CreateGameController.startGame.discuss){
             return new RedirectView("/meeting");
         } else {
@@ -148,8 +156,8 @@ public class GameStateController {
                 getPlayer.taskList.remove(i);
             }
         }
-        while(playerUpdateCounter < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
-        playerUpdateCounter = 0;
+        while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
+
         if(CreateGameController.startGame.discuss){
             return new RedirectView("/meeting");
         } else {
@@ -174,8 +182,9 @@ public class GameStateController {
     public RedirectView meeting(Principal principal, String location) throws InterruptedException {
         String str = location.substring(1);
         CreateGameController.startGame.discuss = true;
-        while(playerUpdateCounter < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
-        playerUpdateCounter = 0;
+        while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
+
+
         if(CreateGameController.startGame.discuss){
             return new RedirectView("/meeting");
         } else {

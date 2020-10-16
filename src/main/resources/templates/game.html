@@ -6,13 +6,15 @@
     <link rel="stylesheet" href="styles.css">
     <script src="/timer.js"></script>
 </head>
-<header>
-    <div id="headerGame">
+
+<body>
+<header class="header">
+    <div >
         <div id="gameName"><section>JavaMongUs</section></div>
         <div id="gamePlayers"><ul><li th:replace="fragments/gamePlayers :: li"></li></ul></div>
     </div>
 </header>
-<body>
+<main>
     <div th:replace="fragments/logout :: a"></div>
     <div th:replace="fragments/homeButton :: a"></div>
 
@@ -49,17 +51,17 @@
                       <h3>Places You Can Go</h3>
 
                       <span th:each="location : ${playerOne.playerLocation.adjacentLocations}">
-                            <input type="radio"  th:id="${location.getName()}" name="location" th:value="${location.getName()}">
+                            <input type="radio"  th:id="${location.getName()}" name="location" th:value="'!' + ${location.getName()}">
                             <label th:for="${location.getName()}" th:text ="${location.getName()}"></label><br>
                         </span>
-                        <input type="radio" th:id="${playerOne.playerLocation.locationName}" name="location"  th:value="'!'+${playerOne.playerLocation.locationName}" checked>
+                        <input type="radio" th:id="${playerOne.playerLocation.locationName}" name="location"  th:value="'!' + ${playerOne.playerLocation.locationName}" checked>
                         <label th:for="${playerOne.playerLocation.locationName}">Stay Here</label>
                     <!--                            End change location                 -->
                     <!--                            This is tasks         -->
                       <span th:if="${playerOne.taskList.contains(playerOne.playerLocation.locationName)}">
                             <h3>Task?</h3>
 
-                            <input  type="radio" th:id="${playerOne.playerLocation.locationName}" name="location" th:value="'&'+${playerOne.playerLocation.locationName}">
+                            <input  type="radio" th:id="${playerOne.playerLocation.locationName}" name="location" th:value="'&' + ${playerOne.playerLocation.locationName}">
                             <label  th:for="${playerOne.playerLocation.getName()}">Yes</label><br>
                       </span>
                       <!--                            End tasks-->
@@ -97,5 +99,6 @@
                 <!--                        End kill form                                                      -->
             </div>
     </div>
+</main>
 </body>
 </html>
