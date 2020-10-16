@@ -10,6 +10,7 @@ let timer = setInterval(function() {
         document.getElementById("timer").innerHTML = "Finished";
 
         document.getElementById("placesToGoJs").submit();
+        document.getElementById("killingMFers").submit();
 
     } else {
         document.getElementById("timer").innerHTML = timeSpan + " s";

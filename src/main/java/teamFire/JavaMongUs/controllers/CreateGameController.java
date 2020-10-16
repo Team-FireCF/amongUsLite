@@ -219,17 +219,19 @@ public class CreateGameController {
 
         System.out.println("seconds to start: " + startGame.getStartTimer());
 
-//        Player newPlayer2 = new Player("Tom", startGame.currentLocation.get("Conference Room"));
-//        Player newPlayer3 = new Player("Dick", startGame.currentLocation.get("Conference Room"));
-//        Player newPlayer4 = new Player("Harry", startGame.currentLocation.get("Conference Room"));
-////
-//        startGame.playerList.put("Tom", newPlayer2);
-//        startGame.playerList.put("Dick", newPlayer3);
-//        startGame.playerList.put("Harry", newPlayer4);
-//        startGame.playerList.get("Tom").setDead(true);
-//        startGame.playerList.get("Harry").setDead(true);
-//        startGame.setPlayerUpdateCounter(3);
-//        startGame.currentLocation.get("Conference Room").playersAtCurrentLocation.add(newPlayer3);
+        Player newPlayer2 = new Player("Tom", startGame.currentLocation.get("Conference Room"));
+        Player newPlayer3 = new Player("Dick", startGame.currentLocation.get("Conference Room"));
+        Player newPlayer4 = new Player("Harry", startGame.currentLocation.get("Conference Room"));
+//
+        startGame.playerList.put("Tom", newPlayer2);
+        startGame.playerList.put("Dick", newPlayer3);
+        startGame.playerList.put("Harry", newPlayer4);
+        startGame.playerList.get("Tom").setDead(true);
+        startGame.playerList.get("Harry").setDead(true);
+        startGame.setPlayerUpdateCounter(3);
+        startGame.currentLocation.get("Conference Room").playersAtCurrentLocation.add(newPlayer3);
+        startGame.currentLocation.get("Conference Room").playersAtCurrentLocation.add(newPlayer4);
+        startGame.currentLocation.get("Conference Room").playersAtCurrentLocation.add(newPlayer2);
 
         return new RedirectView("/startGame");
     }
@@ -249,6 +251,7 @@ public class CreateGameController {
 //        while(nums < imp) {
 //            playerIterator.next().impostor = true;
 //        }
+
         return new RedirectView("/game");
     }
 
