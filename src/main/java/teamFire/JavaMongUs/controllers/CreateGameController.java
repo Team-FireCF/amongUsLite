@@ -197,6 +197,7 @@ public class CreateGameController {
 
     @GetMapping("/playerJoin")
     public RedirectView playerJoinGame(Principal principal){
+
         Player newPlayer = new Player(principal.getName(), startGame.currentLocation.get("Conference Room"));
         startGame.currentLocation.get("Conference Room").playersAtCurrentLocation.add(newPlayer);
 
@@ -216,6 +217,18 @@ public class CreateGameController {
         taskArr.remove(getRandomNumberUsingInts(0, (taskArr.size()-1)));
         taskArr.remove(getRandomNumberUsingInts(0, (taskArr.size()-1)));
         System.out.println("seconds to start: " + startGame.getStartTimer());
+
+        Player newPlayer2 = new Player("Tom", startGame.currentLocation.get("Conference Room"));
+        Player newPlayer3 = new Player("Dick", startGame.currentLocation.get("Conference Room"));
+        Player newPlayer4 = new Player("Harry", startGame.currentLocation.get("Conference Room"));
+//
+        startGame.playerList.put("Tom", newPlayer2);
+        startGame.playerList.put("Dick", newPlayer3);
+        startGame.playerList.put("Harry", newPlayer4);
+        startGame.playerList.get("Tom").setDead(true);
+        startGame.playerList.get("Harry").setDead(true);
+        startGame.setPlayerUpdateCounter(3);
+        startGame.currentLocation.get("Conference Room").playersAtCurrentLocation.add(newPlayer3);
         return new RedirectView("/startGame");
     }
 

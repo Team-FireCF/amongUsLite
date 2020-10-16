@@ -6,10 +6,19 @@
 </head>
 <body>
     <div>
+        <h3>Players in your current room:</h3>
+        <span th:each="player : ${playerOne.playerLocation.playersAtCurrentLocation}" th:if="${player.isDead() != true}" >
+            <ul style="list-style-type:none" th:if="${player != playerOne}">
+                <li style="list-style-type:none" th:text="${player.username} + ' is in the room with you.'"></li>
+            </ul>
+                <li style="list-style-type:none" th:if="${player.playerLocation.playersAtCurrentLocation.size() == 1}" >You are alone in this room.</li>
+
+        </span>
+        <h3>Players in rooms around you:</h3>
         <span th:each="location : ${playerOne.playerLocation.adjacentLocations}">
-            <ul  style="list-style-type:none" th:text="${location.locationName}+':'"></ul>
-                <li style="list-style-type:none" th:each="player : ${location.playersAtCurrentLocation}" th:text="${player.username} + ' is in this room.'"></li>
-                <li style="list-style-type:none" th:if="${location.playersAtCurrentLocation.size() == 0}" >This room is empty.</li>
+            <ul ></ul>
+                <li style="list-style-type:none"  th:each="player : ${location.playersAtCurrentLocation}" th:if="${player.isDead() != true}" th:text="${location.locationName}+': '+${player.username} + ' is in this room.'"></li>
+                <li style="list-style-type:none" th:if="${location.playersAtCurrentLocation.size() == 0}" th:text="${location.locationName}+': This room is empty.'"></li>
         </span>
     </div>
 
