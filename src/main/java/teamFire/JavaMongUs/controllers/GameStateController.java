@@ -20,6 +20,7 @@ public class GameStateController {
         m.addAttribute("playerOne", CreateGameController.startGame.playerList.get(principal.getName()) );
         m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values());
         m.addAttribute("locationDeets", CreateGameController.startGame.currentLocation);
+        m.addAttribute("taskNum",CreateGameController.startGame);
         return "game";
     }
 
@@ -42,7 +43,7 @@ public class GameStateController {
         m.addAttribute("playerOne", CreateGameController.startGame.playerList.get(principal.getName()) );
         m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values() );
         m.addAttribute("startTimer", CreateGameController.startGame.startTimer);
-
+        m.addAttribute("taskNum", CreateGameController.startGame.playerList.size());
         return "start";
     }
 
@@ -110,6 +111,7 @@ public class GameStateController {
         m.addAttribute("playerOne", CreateGameController.startGame.playerList.get(principal.getName()) );
         m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values());
         m.addAttribute("locationDeets", CreateGameController.startGame.currentLocation);
+//        add iff statement to check if all tasks are done.  hardcode to 20
         return new RedirectView("/game");
     }
 
@@ -126,6 +128,8 @@ public class GameStateController {
         }
 
         while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(20); }
+//        add iff statement to check if all tasks are done.  hardcode to 20 and if playerlist.size =2
+//        or if numTasks = 20
 
         Thread.sleep(2000);
 
@@ -143,6 +147,7 @@ public class GameStateController {
         CreateGameController.startGame.setDiscuss(true);
         while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
 
+//        add iff statement to check if all tasks are done.  hardcode to 20
 
 
         if(CreateGameController.startGame.discuss){
@@ -155,12 +160,15 @@ public class GameStateController {
     public RedirectView task (Principal principal, String location) throws InterruptedException {
         String str = location.substring(1);
         Player getPlayer = CreateGameController.startGame.playerList.get(principal.getName());
+        getPlayer.setNumTask(getPlayer.getNumTask()-1);
+        CreateGameController.startGame.setTaskNum(CreateGameController.startGame.getTaskNum() +1);
         for(int i =0; i < getPlayer.taskList.size(); i++){
             if (str.equals(getPlayer.taskList.get(i))) {
                 getPlayer.taskList.remove(i);
             }
         }
         while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
+//        add iff statement to check if all tasks are done.  hardcode to 20
 
         if(CreateGameController.startGame.discuss){
             return new RedirectView("/meeting");
@@ -187,6 +195,7 @@ public class GameStateController {
         String str = location.substring(1);
         CreateGameController.startGame.discuss = true;
         while(CreateGameController.startGame.getPlayerUpdateCounter() < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
+//        add iff statement to check if all tasks are done.  hardcode to 20
 
 
         if(CreateGameController.startGame.discuss){
@@ -218,6 +227,7 @@ public class GameStateController {
 
             System.out.println(CreateGameController.startGame.startTimer);
         }
+
     }
 
 }
