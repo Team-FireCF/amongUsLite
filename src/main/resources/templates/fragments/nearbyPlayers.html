@@ -7,11 +7,12 @@
 <body>
     <div>
         <ul  style="list-style-type:none"th:each="location : ${playerOne.playerLocation.adjacentLocations}">
-            <li th:text="${location.getName()}">
-                <ul th:each="player : ${playerOne.playerLocation.playersAtCurrentLocation}">
-                    <li th:text="${player.getUsername()}"></li>
-                </ul>
-            </li>
+            <li th:text="${location.getName()}"></li>
+            <ul th:each="player : ${location.playersAtCurrentLocation}">
+                <li th:text="${player.getUsername()}"></li>
+                <li th:if="${player.playerLocation.playersAtCurrentLocation.size() == 0}" th:text="empty">Empty</li>
+
+            </ul>
         </ul>
     </div>
 
