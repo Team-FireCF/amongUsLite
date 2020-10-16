@@ -12,16 +12,17 @@
 </head>
 <header>
     <div id="headerGame">
-        <img src="https://via.placeholder.com/1600x200" alt="">
-
+        <div id="gameName"><section>JavaMongUs</section></div>
+        <div id="gamePlayers"><ul><li th:replace="fragments/gamePlayers :: li"></li></ul></div>
     </div>
 </header>
 <body>
-    <div id="meetingBoard">
+    <div class="gameBoard">
         <div id="meetingMap">
             <img src="/JavaMongUs_map.png" alt="">
+            <div th:if="${principal}" th:replace="fragments/timer.html :: #timer"></div>
         </div>
-        <div th:if="${principal}" th:replace="fragments/timer.html :: #timer"></div>
+
 
         <div id="infoMessage">
             <!--   ==== Dead or Alive Starts Below =====-->

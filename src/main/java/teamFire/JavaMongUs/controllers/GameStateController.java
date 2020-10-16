@@ -19,12 +19,14 @@ public class GameStateController {
     public String showTheGame(Principal principal, Model m){
         m.addAttribute("playerOne", CreateGameController.startGame.playerList.get(principal.getName()) );
         m.addAttribute("allPlayers", CreateGameController.startGame.playerList.values());
+        m.addAttribute("locationDeets", CreateGameController.startGame.currentLocation);
         return "game";
     }
 
     @GetMapping("/startGame")
     public String startGame(Principal principal, Model m) throws InterruptedException {
         if(principal.getName().equals(CreateGameController.startGame.gameStartedBy)) {
+            CreateGameController.startGame.playerList.get(principal.getName()).setImpostor(true);
             new Thread(() -> {
                 try {
                     startTimer();
@@ -68,7 +70,7 @@ public class GameStateController {
     @PostMapping("/gameUpdate")
     public RedirectView updateGameState(Principal principal, String location) throws InterruptedException {
         playerUpdateCounter++;
-
+        System.out.println(playerUpdateCounter);
         if(location == null){
             changeLocation(principal, "stayHere");
         }
@@ -77,6 +79,7 @@ public class GameStateController {
         String bol = String.format("%c", sym);
         switch (bol){
             case "!":
+                System.out.println("move");
                 return changeLocation(principal, location);
 
             case "#":
@@ -115,6 +118,7 @@ public class GameStateController {
         }
 
         while(playerUpdateCounter < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
+        playerUpdateCounter = 0;
         if(CreateGameController.startGame.discuss){
 
             return new RedirectView("/meeting");
@@ -126,7 +130,9 @@ public class GameStateController {
         String str = location.substring(1);
         Location getLocation = CreateGameController.startGame.currentLocation.get(str);
         getLocation.deadBody = false;
+        CreateGameController.startGame.setDiscuss(true);
         while(playerUpdateCounter < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
+        playerUpdateCounter = 0;
         if(CreateGameController.startGame.discuss){
             return new RedirectView("/meeting");
         } else {
@@ -143,6 +149,7 @@ public class GameStateController {
             }
         }
         while(playerUpdateCounter < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
+        playerUpdateCounter = 0;
         if(CreateGameController.startGame.discuss){
             return new RedirectView("/meeting");
         } else {
@@ -168,6 +175,7 @@ public class GameStateController {
         String str = location.substring(1);
         CreateGameController.startGame.discuss = true;
         while(playerUpdateCounter < CreateGameController.startGame.playerList.values().size()) { Thread.sleep(50); }
+        playerUpdateCounter = 0;
         if(CreateGameController.startGame.discuss){
             return new RedirectView("/meeting");
         } else {

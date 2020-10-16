@@ -56,18 +56,26 @@
                         <label th:for="${playerOne.playerLocation.locationName}">Stay Here</label>
                     <!--                            End change location                 -->
                     <!--                            This is tasks         -->
-                        <span th:if="${playerOne.taskList.contains(playerOne.playerLocation.locationName)}">
-                            <h3>This room has an uncompleted task, would you like to complete it now?</h3>
+                      <span th:if="${playerOne.taskList.contains(playerOne.playerLocation.locationName)}">
+                            <h3>Task?</h3>
 
                             <input  type="radio" th:id="${playerOne.playerLocation.locationName}" name="location" th:value="'&'+${playerOne.playerLocation.locationName}">
                             <label  th:for="${playerOne.playerLocation.getName()}">Yes</label><br>
+                      </span>
+                      <!--                            End tasks-->
+                      <!--                            Start Meeting         -->
+                      <span th:if="${playerOne.playerLocation.locationName == 'Conference Center'}">
+                          <h3>EMERGENCY MEETING</h3>
 
-                        </span>
+                            <input  type="radio" th:id="${playerOne.playerLocation.locationName}" name="location" th:value="'&'+${playerOne.playerLocation.locationName}">
+                            <label  th:for="${playerOne.playerLocation.getName()}">Yes</label><br>
+                      </span>
+                        <!--                            End Meeting                    -->
 
-                    <!--                            End tasks-->
+
                     <!--                            This is report         -->
                     <span th:if="${playerOne.playerLocation.deadBody == true}">
-                        <h3>Dead body found! Would you like to report it?</h3><!--maybe have an alert pop up? -->
+                        <h3><b>REPORT!?</b></h3><!--maybe have an alert pop up? -->
 
                         <input  type="radio" th:id="${playerOne.playerLocation.locationName}" name="location" th:value="'#'+${playerOne.playerLocation.locationName}">
                         <label  th:for="${playerOne.playerLocation.getName()}">Yes</label><br>
@@ -88,20 +96,6 @@
                 </form>
                 <!--                        End kill form                                                      -->
             </div>
-<!--                <div>-->
-<!--                    <div th:replace="fragments/kill :: div"></div>-->
-<!--                </div>-->
-
     </div>
-
-
-
-
-
-    <a href="/meeting">Call Meeting</a>
-
-    </div>
-
-
 </body>
 </html>

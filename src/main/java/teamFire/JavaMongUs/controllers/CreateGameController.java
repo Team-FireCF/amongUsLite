@@ -191,7 +191,7 @@ public class CreateGameController {
         hall25.adjacentLocations.add(study);
         hall25.adjacentLocations.add(hall3);
         hall25.adjacentLocations.add(hall4);
-
+        startGame.currentLocation.get("Conference Room").setDeadBody(true);
         return new RedirectView("/playerJoin");
     }
 

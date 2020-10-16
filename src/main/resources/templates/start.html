@@ -7,15 +7,14 @@
     <link rel="stylesheet" href="styles.css">
 
 </head>
-<header>
-    <header>
-        <div id="headerGame">
-            <img src="https://via.placeholder.com/1600x200" alt="">
 
-        </div>
-    </header>
-</header>
 <body>
+<header>
+    <div id="headerGame">
+        <div id="gameName"><section>JavaMongUs</section></div>
+        <div id="gamePlayers"><ul><li th:replace="fragments/gamePlayers :: li"></li></ul></div>
+    </div>
+</header>
     <div id="startBoard">
         <div id="startSplash">
             <img src="/Among-Us.jpg" alt="">
