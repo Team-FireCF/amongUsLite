@@ -53,6 +53,19 @@ public class GameStateController {
         return "meeting";
     }
 
+    @GetMapping("/reset")
+    public String resetServer(Principal principal) {
+        CreateGameController.startGame.setDiscuss(false);
+        CreateGameController.startGame.setStartTimer(0);
+        CreateGameController.startGame.setJoinGame(false);
+        CreateGameController.startGame.setGameInProgress(false);
+        CreateGameController.startGame.setGameStartedBy("");
+        CreateGameController.startGame.currentLocation.clear();
+        CreateGameController.startGame.playerList.clear();
+
+        return "home";
+    }
+
     @PostMapping("/gameUpdate")
     public RedirectView updateGameState(Principal principal, String location) throws InterruptedException {
         playerUpdateCounter++;

@@ -35,5 +35,9 @@
     <section th:if="${principal != null and gameState.joinGame}">
         <a href="/playerJoin">Login to Game</a>
     </section>
+
+    <section th:if="${principal != null}">
+        <a href="/reset">Reset Server</a>
+    </section>
 </body>
 </html>
