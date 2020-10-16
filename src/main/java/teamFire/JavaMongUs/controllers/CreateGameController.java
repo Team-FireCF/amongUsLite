@@ -222,7 +222,7 @@ public class CreateGameController {
         Player newPlayer2 = new Player("Tom", startGame.currentLocation.get("Conference Room"));
         Player newPlayer3 = new Player("Dick", startGame.currentLocation.get("Conference Room"));
         Player newPlayer4 = new Player("Harry", startGame.currentLocation.get("Conference Room"));
-//
+
         startGame.playerList.put("Tom", newPlayer2);
         startGame.playerList.put("Dick", newPlayer3);
         startGame.playerList.put("Harry", newPlayer4);
@@ -230,8 +230,10 @@ public class CreateGameController {
         startGame.playerList.get("Harry").setDead(true);
         startGame.setPlayerUpdateCounter(3);
         startGame.currentLocation.get("Conference Room").playersAtCurrentLocation.add(newPlayer3);
-        startGame.currentLocation.get("Conference Room").playersAtCurrentLocation.add(newPlayer4);
+
         startGame.currentLocation.get("Conference Room").playersAtCurrentLocation.add(newPlayer2);
+        startGame.currentLocation.get("Conference Room").playersAtCurrentLocation.add(newPlayer4);
+
 
         return new RedirectView("/startGame");
     }

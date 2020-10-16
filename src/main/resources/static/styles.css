@@ -38,7 +38,11 @@ header {
     border-radius: 25px;
     margin: 15px;
 }
-
+#progressBar, progress {
+    width:98%;
+    height: 20px;
+    margin: 10px;
+}
 #actionPlace {
     display: flex;
     flex-wrap: wrap;
