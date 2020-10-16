@@ -36,7 +36,7 @@ function disconnect(){
 }
 
 function sendMessage(){
-  stompClient.send("/app/userTexts", {}, JSON.stringify({'message':$("#text").val()}))
+  stompClient.send("/app/userTexts", {}, JSON.stringify({'message':$("#hiddenVal").val() + ": " + $("#text").val()}))
 }
 
 function showMessage(message) {

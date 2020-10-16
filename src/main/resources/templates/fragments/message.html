@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,8 +9,8 @@
     <div class="form-group">
         <label for="connect">WebSocket connection:</label>
         <button id="connect" class="btn btn-default" type="submit">Connect</button>
-        <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
-        </button>
+        <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect</button>
+        <param th:value="${playerOne.getUsername()}" id="hiddenVal" name="hiddenVal">
     </div>
 </form>
     <div>

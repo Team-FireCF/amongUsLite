@@ -17,6 +17,7 @@ public class GameState {
     public boolean joinGame = false;
     public boolean gameInProgress = false;
     public String gameStartedBy;
+    int playerUpdateCounter = 0;
 
     public HashMap<String, Player> getPlayerList() {
         return playerList;
@@ -72,6 +73,14 @@ public class GameState {
 
     public void setGameStartedBy(String gameStartedBy) {
         this.gameStartedBy = gameStartedBy;
+    }
+
+    public void setPlayerUpdateCounter(int playerUpdateCounter) {
+        this.playerUpdateCounter = playerUpdateCounter;
+    }
+
+    public int getPlayerUpdateCounter() {
+        return playerUpdateCounter;
     }
 
     @Override

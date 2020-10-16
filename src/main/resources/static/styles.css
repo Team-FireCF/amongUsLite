@@ -9,10 +9,17 @@
     height: 15%;
 }
 
+body {
+    background-color: blue;
+}
+
 header {
     width:1600px;
-    height: 200px;
-
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 25px;
+    background-color: lightslategrey;
 }
 
 .gameBoard {
@@ -190,14 +197,9 @@ header {
     background-color: lightslategrey;
     margin-top: 15px;
 
-header{
-    width: 1600px;
-    height: 200px;
-}
-
 #gameName {
     width: 1400px;
-    height: 200px;
+    height: 100px;
     font-size: 36px;
     color: white;
     background-color: black;
@@ -206,14 +208,14 @@ header{
 
 #gamePlayers{
     width: 200px;
-    height: 200px;
+    height: 100px;
     color: black
     display: flex;
 }
 
 #gamePlayers > ul{
-    width: 200px;
-    height: 200px;
+    width: 90px;
+    height: 25px;
     color: black
     display: flex;
     columns: 75px 2;
